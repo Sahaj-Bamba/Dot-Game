@@ -1,35 +1,53 @@
 package com.DotGame.Main;
 
+import com.DotGame.GameGlobalVariables;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class Server {
+/**
+ * Server Class accepts clients and call the handle client thread on each
+ *
+ */
 
+public class Server {
+	
+	/**
+	 * Blank default constructor
+	 */
+	public Server() {
+	
+	}
+	
 	private ServerSocket serverSocket;
 	private Socket socket;
+		//  Group name vs group class
 	private HashMap<String,Group> group;
-
+	
+	
+	/**
+	 *  Create server socket and call run method.
+	 *
+	 */
 	public void start(){
-
-		boolean flag;
-		int port = 5555;
-		do {
-			try {
-				serverSocket = new ServerSocket(port);
-				flag = true;
-			} catch (IOException e) {
-				flag = false;
-				port++;
-			}
-		}while(flag);
-
-		System.out.println("Server started");
+		
+		try {
+			serverSocket = new ServerSocket(GameGlobalVariables.getInstance().getPort());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Server Socket Created");
 		run();
 
 	}
-
+	
+	/**
+	 * Accepts clients and call handle thread for each one
+	 *
+	 */
 	protected void run() {
 
 		while (true) {
@@ -39,7 +57,7 @@ public class Server {
 				Thread t = new Thread(new HandleClient(socket));
 				System.out.println("Handle client created");
 				t.start();
-				System.out.println("Thread Started");
+				System.out.println("Handle Thread Started");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
