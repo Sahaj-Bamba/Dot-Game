@@ -6,6 +6,8 @@
 
 package com.DotGame.Main;
 
+import com.DotGame.Utilities.Menu;
+
 /**
  *
  * @author Sahaj
@@ -13,8 +15,8 @@ package com.DotGame.Main;
 public class Main {
 
     public static void main(String []args){
-        System.out.println("Hello World");
-        System.out.println("hi");
+        System.out.println("Hello World Starting Client");
+        new Menu().setVisible(true);
     }
 
 }

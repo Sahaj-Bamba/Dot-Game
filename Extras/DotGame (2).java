@@ -12,7 +12,8 @@ import acm.graphics.*;
  */
 
 public class DotGame 
-{ public static int MX=8;
+{ 
+    public static int MX=8;
     
     public static int No_Player;
     public static final int MAX_PLY=MX-1;
@@ -163,8 +164,7 @@ public class DotGame
                
                 
                 V_Line[i-1][j-1].setColor(BG_Color);
-                
-                
+                        
             }
         }
         for(int i=1;i<MX_GS+2;i++)
