@@ -1,25 +1,28 @@
 package com.DotGame.Main;
+/**
+ * @author Sahaj
+ *
+ */
 
 import com.DotGame.Constant.Request;
-import com.DotGame.Request.GroupPass;
-import com.DotGame.Request.Response;
-import com.DotGame.Request.WhoIAm;
-import com.DotGame.Request.GroupList;
+import com.DotGame.Request.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import static com.DotGame.Main.Mainn.GAMER;
-
-
 public class HandleClient implements Runnable{
 
 	private Socket socket;
 	private ObjectInputStream objectInputStream;
 	private ObjectOutputStream objectOutputStream;
-
+	
+	/**
+	 * It accepts the socket and create object input and output streams from it.
+	 *
+	 * @param socket The socket of the accepted client
+	 */
 	public HandleClient(Socket socket) {
 		this.socket = socket;
 		try {
@@ -29,18 +32,6 @@ public class HandleClient implements Runnable{
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * When an object implementing interface <code>Runnable</code> is used
-	 * to create a thread, starting the thread causes the object's
-	 * <code>run</code> method to be called in that separately executing
-	 * thread.
-	 * <p>
-	 * The general contract of the method <code>run</code> is that it may
-	 * take any action whatsoever.
-	 *
-	 * @see Thread#run()
-	 */
 
 	@Override
 	public void run() {
