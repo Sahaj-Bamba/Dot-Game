@@ -1,4 +1,4 @@
-package Request;
+package com.DotGame.Request;
 
 import java.io.Serializable;
 

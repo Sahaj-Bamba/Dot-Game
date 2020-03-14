@@ -1,6 +1,6 @@
-package Main;
+package com.DotGame.Main;
 
-import Request.ClientToken;
+import com.DotGame.Request.ClientToken;
 
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class Group {
 	private String password;
 	private String name;
 	private HashMap<String,Client> clients;
-	private int size = Main.SIZE;
+	private int size = Mainn.SIZE;
 
 	public Group(String name, String password){
 		clients = new HashMap<String, Client>();

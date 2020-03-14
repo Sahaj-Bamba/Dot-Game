@@ -1,6 +1,6 @@
-package Request;
+package com.DotGame.Request;
 
-import Constant.Request;
+import com.DotGame.Constant.Request;
 
 import java.io.Serializable;
 

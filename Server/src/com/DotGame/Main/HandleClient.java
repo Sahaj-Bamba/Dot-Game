@@ -1,17 +1,18 @@
-package Main;
+package com.DotGame.Main;
 
-import Constant.Request;
-import Request.GroupPass;
-import Request.Response;
-import Request.WhoIAm;
-import Request.GroupList;
+import com.DotGame.Constant.Request;
+import com.DotGame.Request.GroupPass;
+import com.DotGame.Request.Response;
+import com.DotGame.Request.WhoIAm;
+import com.DotGame.Request.GroupList;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import static Main.Main.GAMER;
+import static com.DotGame.Main.Mainn.GAMER;
+
 
 public class HandleClient implements Runnable{
 
@@ -91,7 +92,7 @@ public class HandleClient implements Runnable{
 
 				}else if (req.equals(Request.GROUPLIST)){
 
-					System.out.println("Group list Request");
+					System.out.println("Group list com.DotGame.Request");
 
 					GroupList ob3 = (GroupList)(message);
 					GAMER.send_message((Object)GAMER.get_group_list(),ob3.getter());

@@ -1,6 +1,6 @@
-package Main;
+package com.DotGame.Main;
 
-public class Main {
+public class Mainn {
 
 	public static int SIZE = 2;
 	public static Owner GAMER;

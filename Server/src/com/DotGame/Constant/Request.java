@@ -1,4 +1,4 @@
-package Constant;
+package com.DotGame.Constant;
 
 public enum Request {
 

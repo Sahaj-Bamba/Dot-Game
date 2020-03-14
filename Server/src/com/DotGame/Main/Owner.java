@@ -1,7 +1,7 @@
-package Main;
+package com.DotGame.Main;
 
-import Request.ClientToken;
-import Request.GroupList;
+import com.DotGame.Request.ClientToken;
+import com.DotGame.Request.GroupList;
 
 import java.io.ObjectOutputStream;
 import java.util.HashMap;

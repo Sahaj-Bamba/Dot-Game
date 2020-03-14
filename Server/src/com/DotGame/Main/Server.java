@@ -1,4 +1,4 @@
-package Main;
+package com.DotGame.Main;
 
 import java.io.IOException;
 import java.net.ServerSocket;

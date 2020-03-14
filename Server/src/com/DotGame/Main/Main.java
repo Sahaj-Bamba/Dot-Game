@@ -1,4 +1,4 @@
-package com.DotGame;
+package com.DotGame.Main;
 
 public class Main {
 
