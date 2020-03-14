@@ -1,12 +1,15 @@
 package com.DotGame;
 
+import com.DotGame.Main.Owner;
+
 import java.awt.*;
+
+
 
 public class GameGlobalVariables {
 
     private static GameGlobalVariables gameGlobalVariables = null;
 
-    private int ducksCount;
     private double defaultScreenHeight;
     private double defaultScreenWidth;
     private double screenHeight;
@@ -14,9 +17,11 @@ public class GameGlobalVariables {
     private double screenHeightFraction;
     private double screenWidthFraction;
 
+    private int SIZE;
+    private Owner GAMER;
+
     private GameGlobalVariables(){
-        ducksCount=10;
-        calculateFraction(1080,1920);
+        init();
     }
 
     public static GameGlobalVariables getInstance(){
@@ -25,15 +30,20 @@ public class GameGlobalVariables {
         }
         return gameGlobalVariables;
     }
-
-    public int getDucksCount() {
-        return ducksCount;
+    
+    private void init(){
+        calculateFraction(1080,1920);
+        GAMER = new Owner();
     }
-
-    public void setDucksCount(int ducksCount) {
-        this.ducksCount = ducksCount;
+    
+    public int getSIZE() {
+        return SIZE;
     }
-
+    
+    public Owner getGAMER() {
+        return GAMER;
+    }
+    
     public double getScreenHeightFraction() {
         return screenHeightFraction;
     }
@@ -43,13 +53,16 @@ public class GameGlobalVariables {
     }
 
     public void calculateFraction(double x, double y){
+    
         //All The work of the screen size adjusting screen resolution independence
+        
         this.defaultScreenHeight=x;
         this.defaultScreenWidth=y;
         screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
         screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         screenHeightFraction = screenHeight/defaultScreenHeight;
         screenWidthFraction = screenWidth/defaultScreenWidth;
+    
     }
 
 }
