@@ -1,4 +1,4 @@
-package com.DotGame;
+package com.DotGame.Other;
 /**
  *
  * @author Sahaj

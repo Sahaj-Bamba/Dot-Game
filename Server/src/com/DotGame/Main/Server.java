@@ -5,7 +5,7 @@ package com.DotGame.Main;
  *
  */
 
-import com.DotGame.GameGlobalVariables;
+import com.DotGame.Other.GameGlobalVariables;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
