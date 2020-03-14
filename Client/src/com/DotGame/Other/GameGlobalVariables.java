@@ -19,11 +19,14 @@ public class GameGlobalVariables {
      */
     private static GameGlobalVariables gameGlobalVariables = null;
     
+    private Client Gamer;
+    
     /**
      * Server Configuration Variables
      *
      */
     private int port;
+    private String ip;
     
     /**
      * Screen size controls
@@ -68,6 +71,8 @@ public class GameGlobalVariables {
     private void init(){
         calculateFraction(1080,1920);
         port = 5555;
+        ip = "localhost";
+        Gamer = new Client(ip,port);
     }
     
     public int getSIZE() {
@@ -76,6 +81,10 @@ public class GameGlobalVariables {
     
     public int getPort() {
         return port;
+    }
+    
+    public String getip() {
+        return ip;
     }
     
     public double getScreenHeightFraction() {

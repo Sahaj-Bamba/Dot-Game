@@ -6,6 +6,7 @@
 
 package com.DotGame.Main;
 
+import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Utilities.Menu;
 
 /**
