@@ -1,7 +1,11 @@
 package com.DotGame;
 
-import com.DotGame.Main.Owner;
+/**
+ *
+ * @author Sahaj
+ */
 
+import com.DotGame.Main.Owner;
 import java.awt.*;
 
 /**

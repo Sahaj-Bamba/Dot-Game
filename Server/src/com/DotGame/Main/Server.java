@@ -1,7 +1,11 @@
 package com.DotGame.Main;
 
-import com.DotGame.GameGlobalVariables;
+/**
+ * @author Sahaj
+ *
+ */
 
+import com.DotGame.GameGlobalVariables;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,7 +15,6 @@ import java.util.HashMap;
  * Server Class accepts clients and call the handle client thread on each
  *
  */
-
 public class Server {
 	
 	/**
