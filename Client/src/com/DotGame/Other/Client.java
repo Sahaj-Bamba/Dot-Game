@@ -16,16 +16,21 @@ import java.util.logging.Logger;
  *
  * @author Sahaj
  */
+
+/**
+ * Contain the I/O of the client.
+ */
 public class Client {
     
     private Socket socket;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
     
-    public Client() {
-        this.socket = new Socket();
-    }
-
+    /**
+     * Creates a new client and a connection to the server using ip and port provided.
+     * @param ip The ip address of the server.
+     * @param port The port of the server
+     */
     Client(String ip, int port) {
         try {
             this.socket = new Socket(ip,port);
@@ -36,6 +41,11 @@ public class Client {
         }
     }
     
+    /**
+     * Sends a Message to server
+     * @param Message The Object which needs to be sent.
+     * @return True if the message is sent successfully.
+     */
     public boolean sendMessage(Object Message){
         try {
             this.objectOutputStream.writeObject(Message);
@@ -44,6 +54,21 @@ public class Client {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    
+    /**
+     * Receive an Object from the sender. 
+     * @return The received object.
+     */
+    public Object receiveMessage(){
+        try {
+            return this.objectInputStream.readObject();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }
