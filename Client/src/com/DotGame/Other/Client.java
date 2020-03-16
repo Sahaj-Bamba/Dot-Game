@@ -24,6 +24,7 @@ public class Client {
     
     private String name;
     private String groupName;
+    private boolean isOwner;
     private Socket socket;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
@@ -42,6 +43,27 @@ public class Client {
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name,String groupName) {
+        this.name = name;
+        this.groupName = groupName;
+    }
+    
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public boolean isIsOwner() {
+        return isOwner;
+    }
+    
+    public void makeOwner(){
+        isOwner = true;
     }
     
     /**
@@ -77,14 +99,6 @@ public class Client {
         return null;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name,String groupName) {
-        this.name = name;
-        this.groupName = groupName;
-    }
     
     
     

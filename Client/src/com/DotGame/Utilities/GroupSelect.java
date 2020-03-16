@@ -6,6 +6,7 @@
 package com.DotGame.Utilities;
 
 import com.DotGame.Constant.Request;
+import com.DotGame.Constant.Responses;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.GroupDetails;
 import com.DotGame.Request.Response;
@@ -151,6 +152,16 @@ public class GroupSelect extends javax.swing.JFrame {
         Response response = (Response) GameGlobalVariables.getInstance().getClient().receiveMessage();
         error.setText(response.getErrorMessage());
         
+        if(response.getStatus().equals(Responses.OK))
+        {
+            GameGlobalVariables.getInstance().getClient().makeOwner();
+            GroupView groupView = new GroupView();
+            groupView.initialiser();
+            this.dispose();
+        }else{
+            
+        }
+
     }//GEN-LAST:event_createActionPerformed
 
     private void join1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_join1ActionPerformed
@@ -166,6 +177,15 @@ public class GroupSelect extends javax.swing.JFrame {
         
         Response response = (Response) GameGlobalVariables.getInstance().getClient().receiveMessage();
         error.setText(response.getErrorMessage());
+
+        if(response.getStatus().equals(Responses.OK))
+        {
+            GroupView groupView = new GroupView();
+            groupView.initialiser();
+            this.dispose();
+        }else{
+            
+        }
         
     }//GEN-LAST:event_join1ActionPerformed
 

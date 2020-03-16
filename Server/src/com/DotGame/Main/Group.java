@@ -4,8 +4,6 @@ package com.DotGame.Main;
  * @author Sahaj
  */
 
-import com.DotGame.Request.ClientToken;
-
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;

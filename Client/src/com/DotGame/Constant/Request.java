@@ -8,7 +8,8 @@ public enum Request {
 	GROUPLIST("3"),
 	
 	CREATEGROUP("4"),
-	JOINGROUP("5")
+	JOINGROUP("5"),
+	LISTGROUP("6"),
 	
 	
 	;

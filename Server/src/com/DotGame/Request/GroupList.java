@@ -1,39 +1,38 @@
 package com.DotGame.Request;
 
 import com.DotGame.Constant.Request;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
-public class GroupList extends ClientToken implements Serializable {
-
-	private ArrayList<String> groups;
-
-	public GroupList(ClientToken clientToken) {
-		super(clientToken);
-		this.groups = new ArrayList<String>();
+public class GroupList implements Serializable {
+	
+	private String groupName;
+	private int number;
+	private String[] clients;
+	
+	public GroupList(String groupName){
+		this.groupName = groupName;
 	}
-
-	public GroupList() {
-		super();
-		this.groups = new ArrayList<String>();
+	
+	public GroupList(int number, String[] clients) {
+		this.number = number;
+		this.clients = clients;
 	}
-
-	public void add(String g){
-		groups.add(g);
+	
+	public String getGroupName() {
+		return groupName;
 	}
-
-	public void remove(String g){
-		groups.remove(g);
+	
+	public int getNumber() {
+		return number;
 	}
-
-	public ArrayList<String> getGroups() {
-		return groups;
+	
+	public String[] getClients() {
+		return clients;
 	}
-
+	
 	@Override
 	public String toString() {
-		return String.valueOf(Request.GROUPLIST);
+		return String.valueOf(Request.LISTGROUP);
 	}
-
+	
 }

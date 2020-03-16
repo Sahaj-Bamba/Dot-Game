@@ -113,7 +113,22 @@ public class HandleClient implements Runnable{
 		return new Response(Responses.OK,"Group Joined");
 	}
 	
+	/**
+	 * Here the process from group joining to the start of game occur.
+	 * Includes joining of new members, chatting and the epic message of the start of Game.
+	 * @return false if it ends and the game is started.
+	 */
 	public boolean startWait(){
+		
+		try {
+			
+			GroupList groupList = (GroupList) objectInputStream.readObject();
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return true;
 	}
@@ -186,9 +201,3 @@ public class HandleClient implements Runnable{
 
 
 
-
-
-
-
-
-/*  Do Rest of processing on the object here    */
