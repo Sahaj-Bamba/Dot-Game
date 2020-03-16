@@ -29,7 +29,7 @@ public class Owner {
 	 */
 	public Owner(){
 		groups = new HashMap<String, Group>();
-		groups.put("extra",new Group("extra",""));
+		groups.put("extra",new Group("extra","","def"));
 		groupList = new GroupList();
 	}
 	
@@ -39,11 +39,11 @@ public class Owner {
 	 * @param password  The password of the group.
 	 * @return True if the group is successfully created.
 	 */
-	public boolean add_group(String name,String password){
+	public boolean add_group(String name,String password,String leader){
 		if (group_exist(name)){
 			return false;
 		}
-		groups.put("extra",new Group(name,password));
+		groups.put(name,new Group(name,password,leader));
 		groupList.add(name);
 		return true;
 	}
@@ -55,7 +55,7 @@ public class Owner {
 	 * @return True if the password matches
 	 */
 	public boolean check_pass(String name,String pass){
-		if (groups.get(name).getPassword() == pass){
+		if (groups.get(name).getPassword().equals(pass)){
 			return true;
 		}
 		return false;
@@ -85,7 +85,7 @@ public class Owner {
 	 * @param objectOutputStream The object output stream of client
 	 */
 	public void add_client(String groupName, String clientName, ObjectOutputStream objectOutputStream){
-			groups.get(groupName).add_client(clientName,objectOutputStream);
+		groups.get(groupName).add_client(clientName,objectOutputStream);
 	}
 	
 	/**

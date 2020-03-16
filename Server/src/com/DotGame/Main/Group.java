@@ -19,6 +19,7 @@ public class Group {
 
 	private String password;
 	private String name;
+	private String leader;
 	private HashMap<String,Client> clients;
 	private int size;
 	
@@ -27,10 +28,11 @@ public class Group {
 	 * @param name name of the group. Be sure that a group with that name doesn't already exists
 	 * @param password the password of the group
 	 */
-	public Group(String name, String password){
+	public Group(String name, String password, String leader){
 		clients = new HashMap<String, Client>();
 		this.name = name;
 		this.password = password;
+		this.leader = leader;
 	}
 	
 	public String getPassword() {

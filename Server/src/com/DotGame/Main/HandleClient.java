@@ -16,9 +16,13 @@ import java.net.Socket;
 
 public class HandleClient implements Runnable{
 
+	private String clientName;
+	private String groupName;
 	private Socket socket;
 	private ObjectInputStream objectInputStream;
 	private ObjectOutputStream objectOutputStream;
+	
+	private boolean goBack;
 	
 	/**
 	 * It accepts the socket and create object input and output streams from it.
@@ -30,6 +34,7 @@ public class HandleClient implements Runnable{
 		try {
 			objectInputStream = new ObjectInputStream(socket.getInputStream());
 			objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+			System.out.println("Streams created");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -41,9 +46,11 @@ public class HandleClient implements Runnable{
 	@Override
 	public void run() {
 		
-		
-		groupInit();
-		
+		do {
+			goBack=true;
+			groupInit();
+		}while(goBack);
+		while (startWait());
 	}
 	
 	/**
@@ -51,13 +58,15 @@ public class HandleClient implements Runnable{
 	 * After this method is successfully completed the group of the client is decided.
 	 */
 	private void groupInit(){
+		System.out.println("Group Initialising");
 		try{
 			
 			GroupDetails groupDetails = (GroupDetails) objectInputStream.readObject();
-			
-			if (groupDetails.toString() == String.valueOf(Request.CREATEGROUP)) {
+			groupName = groupDetails.get_group_name();
+			clientName = groupDetails.get_client_name();
+			if (groupDetails.toString().equals(String.valueOf(Request.CREATEGROUP))) {
 				objectOutputStream.writeObject(createGroup(groupDetails));
-			}else if (groupDetails.toString() == String.valueOf(Request.CREATEGROUP)) {
+			}else if (groupDetails.toString().equals(String.valueOf(Request.JOINGROUP))) {
 				objectOutputStream.writeObject(joinGroup(groupDetails));
 			}
 			
@@ -78,10 +87,9 @@ public class HandleClient implements Runnable{
 		if (GameGlobalVariables.getInstance().getGAMER().group_exist(groupDetails.get_group_name())){
 			return new Response(Responses.ERROR,"Group already exists.");
 		}
-		
-		GameGlobalVariables.getInstance().getGAMER().add_group(groupDetails.get_group_name(),groupDetails.get_password());
+		GameGlobalVariables.getInstance().getGAMER().add_group(groupDetails.get_group_name(),groupDetails.get_password(),groupDetails.get_client_name());
 		GameGlobalVariables.getInstance().getGAMER().add_client(groupDetails.get_group_name(),groupDetails.get_client_name(),this.objectOutputStream);
-		
+		goBack = false;
 		return new Response(Responses.OK,"Group Created");
 	}
 	
@@ -101,8 +109,13 @@ public class HandleClient implements Runnable{
 		}
 		
 		GameGlobalVariables.getInstance().getGAMER().add_client(groupDetails.get_group_name(),groupDetails.get_client_name(),this.objectOutputStream);
-		
+		goBack = false;
 		return new Response(Responses.OK,"Group Joined");
+	}
+	
+	public boolean startWait(){
+		
+		return true;
 	}
 
 }

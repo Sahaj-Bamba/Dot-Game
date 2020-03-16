@@ -51,6 +51,7 @@ public class Client {
      */
     public boolean sendMessage(Object Message){
         try {
+            System.out.println(Message.toString());
             this.objectOutputStream.writeObject(Message);
             return true;
         } catch (IOException ex) {
@@ -65,7 +66,9 @@ public class Client {
      */
     public Object receiveMessage(){
         try {
-            return this.objectInputStream.readObject();
+            Object obj = this.objectInputStream.readObject();
+            System.out.println(obj.toString());
+            return obj;
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
