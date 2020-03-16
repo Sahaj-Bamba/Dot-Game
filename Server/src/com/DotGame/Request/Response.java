@@ -4,7 +4,7 @@ import com.DotGame.Constant.Responses;
 
 import java.io.Serializable;
 
-public class Response extends ClientToken implements Serializable {
+public class Response implements Serializable {
 
 	private Responses status;
 	private String errorMessage;
@@ -13,5 +13,13 @@ public class Response extends ClientToken implements Serializable {
 		this.status = status;
 		this.errorMessage = errorMessage;
 	}
-
+	
+	public Responses getStatus() {
+		return status;
+	}
+	
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	
 }

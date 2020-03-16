@@ -82,7 +82,7 @@ public class HandleClient implements Runnable{
 		GameGlobalVariables.getInstance().getGAMER().add_group(groupDetails.get_group_name(),groupDetails.get_password());
 		GameGlobalVariables.getInstance().getGAMER().add_client(groupDetails.get_group_name(),groupDetails.get_client_name(),this.objectOutputStream);
 		
-		return new Response(Responses.OK,"");
+		return new Response(Responses.OK,"Group Created");
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class HandleClient implements Runnable{
 		
 		GameGlobalVariables.getInstance().getGAMER().add_client(groupDetails.get_group_name(),groupDetails.get_client_name(),this.objectOutputStream);
 		
-		return new Response(Responses.OK,"");
+		return new Response(Responses.OK,"Group Joined");
 	}
 
 }

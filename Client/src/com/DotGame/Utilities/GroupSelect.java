@@ -8,6 +8,7 @@ package com.DotGame.Utilities;
 import com.DotGame.Constant.Request;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.GroupDetails;
+import com.DotGame.Request.Response;
 
 /**
  *
@@ -146,6 +147,9 @@ public class GroupSelect extends javax.swing.JFrame {
         GameGlobalVariables.getInstance().getClient().setName(clientName.getText(),groupName.getText());
         GameGlobalVariables.getInstance().getClient().sendMessage(new GroupDetails(password.getText(), groupName.getName(), clientName.getText(), String.valueOf(Request.CREATEGROUP)));
         
+        Response response = (Response) GameGlobalVariables.getInstance().getClient().receiveMessage();
+        error.setText(response.getErrorMessage());
+        
     }//GEN-LAST:event_createActionPerformed
 
     private void join1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_join1ActionPerformed
@@ -158,6 +162,9 @@ public class GroupSelect extends javax.swing.JFrame {
         
         GameGlobalVariables.getInstance().getClient().setName(clientName.getText(),groupName.getText());
         GameGlobalVariables.getInstance().getClient().sendMessage(new GroupDetails(password.getText(), groupName.getName(), clientName.getText(), String.valueOf(Request.JOINGROUP)));
+        
+        Response response = (Response) GameGlobalVariables.getInstance().getClient().receiveMessage();
+        error.setText(response.getErrorMessage());
         
     }//GEN-LAST:event_join1ActionPerformed
 
