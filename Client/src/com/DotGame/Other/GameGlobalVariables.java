@@ -87,6 +87,10 @@ public class GameGlobalVariables {
         return ip;
     }
     
+    public Client getClient(){
+        return this.Gamer;
+    }
+    
     public double getScreenHeightFraction() {
         return screenHeightFraction;
     }

@@ -49,6 +49,19 @@ public class Owner {
 	}
 	
 	/**
+	 * Verify the password of the group
+	 * @param name Name of the group
+	 * @param pass Password to check
+	 * @return True if the password matches
+	 */
+	public boolean check_pass(String name,String pass){
+		if (groups.get(name).getPassword() == pass){
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Delete a group
 	 * @param name The name of the group.
 	 */

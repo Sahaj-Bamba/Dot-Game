@@ -36,6 +36,11 @@ public class Menu extends javax.swing.JFrame {
         startGame.setText("Start Game");
 
         connect.setText("Connect");
+        connect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                connectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,6 +65,14 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
+        // TODO add your handling code here:
+        
+        this.dispose();
+        new GroupSelect().setVisible(true);
+        
+    }//GEN-LAST:event_connectActionPerformed
 
     /**
      * @param args the command line arguments

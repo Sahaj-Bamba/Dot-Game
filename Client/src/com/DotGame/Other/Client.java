@@ -22,6 +22,8 @@ import java.util.logging.Logger;
  */
 public class Client {
     
+    private String name;
+    private String groupName;
     private Socket socket;
     private ObjectInputStream objectInputStream;
     private ObjectOutputStream objectOutputStream;
@@ -36,6 +38,7 @@ public class Client {
             this.socket = new Socket(ip,port);
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+            this.name = "Gamer";
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,5 +73,16 @@ public class Client {
         }
         return null;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name,String groupName) {
+        this.name = name;
+        this.groupName = groupName;
+    }
+    
+    
     
 }

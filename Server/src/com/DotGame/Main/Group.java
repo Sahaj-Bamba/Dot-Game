@@ -33,6 +33,10 @@ public class Group {
 		this.password = password;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	
 	/**
 	 * Adds the client to the group
 	 * @param name the name of the client
