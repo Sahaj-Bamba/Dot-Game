@@ -50,7 +50,9 @@ public class HandleClient implements Runnable{
 			goBack=true;
 			groupInit();
 		}while(goBack);
-		while (startWait());
+		
+		startWait();
+	
 	}
 	
 	/**
@@ -118,11 +120,23 @@ public class HandleClient implements Runnable{
 	 * Includes joining of new members, chatting and the epic message of the start of Game.
 	 * @return false if it ends and the game is started.
 	 */
-	public boolean startWait(){
+	public void startWait(){
 		
 		try {
 			GroupList groupList = (GroupList) objectInputStream.readObject();
 			objectOutputStream.writeObject(new GroupList(GameGlobalVariables.getInstance().getGAMER().getClientList(groupList.getGroupName())));
+			
+			while (true){
+				Object obj = objectInputStream.readObject();
+				
+				if (obj.toString().equals(String.valueOf(Request.MESSAGE))){
+					receivedMessage((Message)obj);
+				}else if (obj.toString().equals(String.valueOf(Request.MEMBERADD))){
+					addMember((AddMember)obj);
+				}else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
+					removeMember((RemoveMember)obj);
+				}
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -130,7 +144,18 @@ public class HandleClient implements Runnable{
 			e.printStackTrace();
 		}
 		
-		return true;
+	}
+	
+	private void receivedMessage(Message obj) {
+	
+	}
+	
+	private void addMember(AddMember addMember) {
+	
+	}
+	
+	private void removeMember(RemoveMember removeMember) {
+	
 	}
 
 }
