@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.DotGame.Other;
+package com.DotGame.Main;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -34,7 +34,7 @@ public class Client {
      * @param ip The ip address of the server.
      * @param port The port of the server
      */
-    Client(String ip, int port) {
+    public Client(String ip, int port) {
         try {
             this.socket = new Socket(ip,port);
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());

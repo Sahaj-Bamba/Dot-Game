@@ -6,7 +6,7 @@
 package com.DotGame.Utilities;
 
 import com.DotGame.Other.GameGlobalVariables;
-import com.DotGame.Other.ListenGroup;
+import com.DotGame.Main.ListenGroup;
 import com.DotGame.Request.GroupList;
 
 /**

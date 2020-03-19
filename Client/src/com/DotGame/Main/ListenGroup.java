@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.DotGame.Other;
+package com.DotGame.Main;
 
 import com.DotGame.Constant.Request;
+import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.AddMember;
 import com.DotGame.Request.Message;
 import com.DotGame.Request.RemoveMember;

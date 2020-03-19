@@ -13,8 +13,8 @@ public enum Request {
         
         MESSAGE("7"), 
         MEMBERADD("8"), 
-        MEMBERREMOVE("9"),
-	
+        MEMBERREMOVE("9"), 
+        
 	
 	;
 	

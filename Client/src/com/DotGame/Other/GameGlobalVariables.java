@@ -5,6 +5,7 @@ package com.DotGame.Other;
  * @author Sahaj
  */
 
+import com.DotGame.Main.Client;
 import java.awt.*;
 
 /**
