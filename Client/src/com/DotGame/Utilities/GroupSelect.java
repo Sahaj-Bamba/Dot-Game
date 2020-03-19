@@ -41,8 +41,8 @@ public class GroupSelect extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         error = new javax.swing.JLabel();
-        clientName = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        clientName2 = new javax.swing.JLabel();
+        clientName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,10 +74,10 @@ public class GroupSelect extends javax.swing.JFrame {
         error.setForeground(new java.awt.Color(153, 0, 0));
         error.setText(" ");
 
-        clientName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clientName.setText("Your Name");
+        clientName2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clientName2.setText("Your Name");
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        clientName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,12 +101,12 @@ public class GroupSelect extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(clientName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(clientName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(87, 87, 87)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(groupName)
                                     .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                                    .addComponent(jTextField1))
+                                    .addComponent(clientName))
                                 .addGap(40, 40, 40)))))
                 .addContainerGap(227, Short.MAX_VALUE))
         );
@@ -115,8 +115,8 @@ public class GroupSelect extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(clientName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
+                    .addComponent(clientName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientName, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,11 +140,10 @@ public class GroupSelect extends javax.swing.JFrame {
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
         
-        if (groupName.getText()=="" || password.getText()=="" || clientName.getText()=="") {
+        if (groupName.getText()=="" || password.getText()=="" || clientName2.getText()=="") {
             error.setText("Please enter name and Password.");
             return;
         }
-        
         
         GameGlobalVariables.getInstance().getClient().setName(clientName.getText(),groupName.getText());
         GameGlobalVariables.getInstance().getClient().sendMessage(new GroupDetails(password.getText(), groupName.getText(), clientName.getText(), String.valueOf(Request.CREATEGROUP)));
@@ -167,7 +166,7 @@ public class GroupSelect extends javax.swing.JFrame {
     private void join1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_join1ActionPerformed
         
         
-        if (groupName.getText()=="" || password.getText()=="" || clientName.getText()=="") {
+        if (groupName.getText()=="" || password.getText()=="" || clientName2.getText()=="") {
             error.setText("Please enter name and Password.");
             return;
         }
@@ -225,13 +224,13 @@ public class GroupSelect extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel clientName;
+    private javax.swing.JTextField clientName;
+    private javax.swing.JLabel clientName2;
     private javax.swing.JButton create;
     private javax.swing.JLabel error;
     private javax.swing.JTextField groupName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton join;
     private javax.swing.JButton join1;
     private javax.swing.JPasswordField password;

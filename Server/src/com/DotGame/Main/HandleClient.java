@@ -121,9 +121,9 @@ public class HandleClient implements Runnable{
 	public boolean startWait(){
 		
 		try {
-			
 			GroupList groupList = (GroupList) objectInputStream.readObject();
-		
+			objectOutputStream.writeObject(new GroupList(GameGlobalVariables.getInstance().getGAMER().getClientList(groupList.getGroupName())));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

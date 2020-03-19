@@ -43,6 +43,8 @@ public class GroupView extends javax.swing.JFrame {
         chatArea = new javax.swing.JLabel();
         msgContent = new javax.swing.JTextField();
         send = new javax.swing.JButton();
+        leaveGroup = new javax.swing.JButton();
+        name = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +72,11 @@ public class GroupView extends javax.swing.JFrame {
 
         send.setText("Send");
 
+        leaveGroup.setText("Leave Group");
+
+        name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        name.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,11 +95,16 @@ public class GroupView extends javax.swing.JFrame {
                                     .addComponent(player4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(player5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(player6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(player7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(287, 287, 287)
+                                    .addComponent(player7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(255, 255, 255)
+                                        .addComponent(leaveGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(37, 37, 37)
                                 .addComponent(starter, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
+                        .addGap(71, 71, 71)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
                         .addComponent(groupName, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,9 +121,13 @@ public class GroupView extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(groupName, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(groupName, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                         .addGap(32, 32, 32)
-                        .addComponent(starter, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(leaveGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(starter, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
                         .addComponent(player1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
@@ -178,7 +194,9 @@ public class GroupView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chatArea;
     private javax.swing.JLabel groupName;
+    private javax.swing.JButton leaveGroup;
     private javax.swing.JTextField msgContent;
+    private javax.swing.JLabel name;
     private javax.swing.JLabel player1;
     private javax.swing.JLabel player2;
     private javax.swing.JLabel player3;
@@ -195,12 +213,22 @@ public class GroupView extends javax.swing.JFrame {
         if (!GameGlobalVariables.getInstance().getClient().isIsOwner()) {
             starter.setVisible(false);
         }
+        name.setText(GameGlobalVariables.getInstance().getClient().getName());
         groupName.setText(GameGlobalVariables.getInstance().getClient().getGroupName());
         GameGlobalVariables.getInstance().getClient().sendMessage(new GroupList(groupName.getText()));
         GroupList groupList = (GroupList) GameGlobalVariables.getInstance().getClient().receiveMessage();
         
         String[] x = groupList.getClients();
         
+        player1.setText(x[0]);
+        player2.setText(x[1]);
+        player3.setText(x[2]);
+        player4.setText(x[3]);
+        player5.setText(x[4]);
+        player6.setText(x[5]);
+        player7.setText(x[6]);
+        player8.setText(x[7]);
         
+        this.setVisible(true);
     }
 }

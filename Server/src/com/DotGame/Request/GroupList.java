@@ -18,6 +18,10 @@ public class GroupList implements Serializable {
 		this.clients = clients;
 	}
 	
+	public GroupList(String[] clients) {
+		this.clients = clients;
+	}
+	
 	public String getGroupName() {
 		return groupName;
 	}

@@ -38,6 +38,24 @@ public class Group {
 	}
 	
 	/**
+	 * Give a list of all the clients present in a group.
+	 * @return The list of all clients of a group.
+	 */
+	public String[] getClientList(){
+		String[] tmp = new String[8];
+		int i = 0;
+		Iterator group = clients.entrySet().iterator();
+		while (group.hasNext()){
+			Map.Entry g = (Map.Entry)group.next();
+			tmp[i++] = (String) g.getKey();
+		}
+		while(i<8){
+			tmp[i++]="";
+		}
+		return tmp;
+	}
+	
+	/**
 	 * Adds the client to the group
 	 * @param name the name of the client
 	 * @param objectOutputStream the object output stream of the client

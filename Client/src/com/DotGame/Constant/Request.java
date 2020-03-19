@@ -9,7 +9,11 @@ public enum Request {
 	
 	CREATEGROUP("4"),
 	JOINGROUP("5"),
-	LISTGROUP("6"),
+	LISTGROUP("6"), 
+        
+        MESSAGE("7"), 
+        MEMBERADD("8"), 
+        MEMBERREMOVE("9"),
 	
 	
 	;

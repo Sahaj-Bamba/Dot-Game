@@ -5,6 +5,7 @@ package com.DotGame.Main;
  *
  */
 
+
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,7 +21,6 @@ public class Owner {
 	 *
 	 */
 	private HashMap<String,Group> groups;
-	private GroupList groupList;
 	
 	/**
 	 * Initialises groups hash map, creates a default group extra.
@@ -28,7 +28,30 @@ public class Owner {
 	public Owner(){
 		groups = new HashMap<String, Group>();
 		groups.put("extra",new Group("extra","","def"));
-		groupList = new GroupList();
+	}
+	
+	/**
+	 * Give a list of all the groups max number of groups is 100.
+	 * @return The list of all the groups
+	 */
+	public String[] getGroupList(){
+		String[] tmp = new String[100];
+		int i = 0;
+		Iterator group = groups.entrySet().iterator();
+		while (group.hasNext()){
+			Map.Entry g = (Map.Entry)group.next();
+			tmp[i++] = (String) g.getKey();
+		}
+		return tmp;
+	}
+	
+	/**
+	 * Give a list of all the clients present in a specific group.
+	 * @param name The name of the group.
+	 * @return The list of all clients of a group.
+	 */
+	public String[] getClientList(String name){
+		return groups.get(name).getClientList();
 	}
 	
 	/**
@@ -42,7 +65,6 @@ public class Owner {
 			return false;
 		}
 		groups.put(name,new Group(name,password,leader));
-		groupList.add(name);
 		return true;
 	}
 	
@@ -65,16 +87,12 @@ public class Owner {
 	 */
 	public void remove_group(String name){
 		groups.remove(name);
-		groupList.remove(name);
 	}
 	
 	/**
 	 * Get the list of all the groups
 	 * @return the Group List
 	 */
-	public GroupList get_group_list() {
-		return groupList;
-	}
 	
 	/**
 	 * Adds a client to the group
@@ -137,7 +155,7 @@ public class Owner {
 	}
 	
 	/**
-	 * Send message to a particular client of a particular group
+	  * Send message to a particular client of a particular group
 	 * @param message Object to send.
 	 * @param groupName Name of group of client.
 	 * @param clientName Name of client.
