@@ -6,6 +6,7 @@
 package com.DotGame.Utilities;
 
 import com.DotGame.Other.GameGlobalVariables;
+import com.DotGame.Other.ListenGroup;
 import com.DotGame.Request.GroupList;
 
 /**
@@ -14,6 +15,10 @@ import com.DotGame.Request.GroupList;
  */
 public class GroupView extends javax.swing.JFrame {
 
+    private int numOfPlayers; 
+    
+    private Thread listen;
+    
     /**
      * Creates new form GroupView
      */
@@ -229,6 +234,56 @@ public class GroupView extends javax.swing.JFrame {
         player7.setText(x[6]);
         player8.setText(x[7]);
         
+        listen = new Thread(new ListenGroup(this));
+        listen.start();
+        
         this.setVisible(true);
     }
+    
+    public void gotMessage(String msg){
+        chatArea.setText(chatArea.getText() + "\n" + msg);
+    }
+    
+    public void gotPlayer(String name){
+        if(player1.getText() == ""){
+         player1.setText(name);   
+        }else if(player2.getText() == ""){
+         player2.setText(name);   
+        }else if(player3.getText() == ""){
+         player3.setText(name);   
+        }else if(player4.getText() == ""){
+         player4.setText(name);   
+        }else if(player5.getText() == ""){
+         player5.setText(name);   
+        }else if(player6.getText() == ""){
+         player6.setText(name);   
+        }else if(player7.getText() == ""){
+         player7.setText(name);   
+        }else if(player8.getText() == ""){
+         player8.setText(name);   
+        }
+        chatArea.setText("\t\t" + name + " joined the room. ");
+    }
+     
+    public void lostPlayer(String name){
+        if(player1.getText() == name){
+         player1.setText("");   
+        }else if(player2.getText() == name){
+         player2.setText("");   
+        }else if(player3.getText() == name){
+         player3.setText("");   
+        }else if(player4.getText() == name){
+         player4.setText("");   
+        }else if(player5.getText() == name){
+         player5.setText("");   
+        }else if(player6.getText() == name){
+         player6.setText("");   
+        }else if(player7.getText() == name){
+         player7.setText("");   
+        }else if(player8.getText() == name){
+         player8.setText("");   
+        }
+        chatArea.setText("\t\t" + name + " left the room. ");
+    }
+    
 }
