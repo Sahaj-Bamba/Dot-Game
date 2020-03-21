@@ -167,5 +167,18 @@ public class Owner {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Check if a client with given name already exist
+	 * @param group Name of the group
+	 * @param name Client name to check
+	 * @return True if client doesnot exist
+	 */
+	public boolean client_exist(String group,String name){
+		if (groups.get(group).client_exist(name)){
+			return true;
+		}
+		return false;
+	}
+	
 }

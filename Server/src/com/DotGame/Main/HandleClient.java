@@ -110,6 +110,10 @@ public class HandleClient implements Runnable{
 			return new Response(Responses.ERROR,"Password doesnot match.");
 		}
 		
+		if (GameGlobalVariables.getInstance().getGAMER().client_exist(groupName,clientName)){
+			return new Response(Responses.ERROR,"A gamer with that name already exist .");
+		}
+		
 		GameGlobalVariables.getInstance().getGAMER().add_client(groupDetails.get_group_name(),groupDetails.get_client_name(),this.objectOutputStream);
 		goBack = false;
 		return new Response(Responses.OK,"Group Joined");
