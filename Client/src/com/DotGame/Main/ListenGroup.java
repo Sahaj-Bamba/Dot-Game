@@ -37,6 +37,8 @@ public class ListenGroup implements Runnable{
                 addMember((AddMember)obj);
             }else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
                 removeMember((RemoveMember)obj);    
+            }else if (obj.toString().equals(String.valueOf(Request.STARTGAME))){
+                startGame();    
             }
             
         }
@@ -48,11 +50,19 @@ public class ListenGroup implements Runnable{
     }
 
     private void addMember(AddMember addMember) {
+        if (addMember.getName().equals(GameGlobalVariables.getInstance().getClient().getName())){ 
+            return;
+        }
         groupView.gotPlayer(addMember.getName());
     }
 
     private void removeMember(RemoveMember removeMember) {
         groupView.lostPlayer(removeMember.getName());
+    }
+
+    private void startGame() {
+        groupView.dispose();
+        System.out.println("Started Game in group " + GameGlobalVariables.getInstance().getClient().getGroupName() + " of " + GameGlobalVariables.getInstance().getClient().getName());
     }
     
 }

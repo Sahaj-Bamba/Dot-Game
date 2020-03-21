@@ -12,21 +12,11 @@ import java.io.Serializable;
  *
  * @author Sahaj
  */
-public class RemoveMember implements Serializable{
-	
-	private String name;
-	
-	public RemoveMember(String name) {
-		this.name = name;
-	}
-	
-	public String getName() {
-		return name;
-	}
+public class StartGame implements Serializable{
 	
 	@Override
 	public String toString() {
-		return String.valueOf(Request.MEMBERREMOVE);
+		return String.valueOf(Request.STARTGAME);
 	}
 	
 }

@@ -70,6 +70,8 @@ public class GroupSelect extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Password");
 
+        password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         error.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         error.setForeground(new java.awt.Color(153, 0, 0));
         error.setText(" ");

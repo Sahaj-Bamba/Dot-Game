@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  * @author Sahaj
  */
-public class RemoveMember {
+public class RemoveMember implements Serializable{
         
     private String name;
 

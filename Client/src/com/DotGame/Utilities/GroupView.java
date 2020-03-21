@@ -5,9 +5,13 @@
  */
 package com.DotGame.Utilities;
 
+import com.DotGame.Constant.MessageType;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Main.ListenGroup;
 import com.DotGame.Request.GroupList;
+import com.DotGame.Request.Message;
+import com.DotGame.Request.RemoveMember;
+import com.DotGame.Request.StartGame;
 
 /**
  *
@@ -45,11 +49,12 @@ public class GroupView extends javax.swing.JFrame {
         player7 = new javax.swing.JLabel();
         player8 = new javax.swing.JLabel();
         starter = new javax.swing.JButton();
-        chatArea = new javax.swing.JLabel();
         msgContent = new javax.swing.JTextField();
         send = new javax.swing.JButton();
         leaveGroup = new javax.swing.JButton();
         name = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        chatArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,15 +77,32 @@ public class GroupView extends javax.swing.JFrame {
         player8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         starter.setText("Start Game");
-
-        chatArea.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        starter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                starterActionPerformed(evt);
+            }
+        });
 
         send.setText("Send");
+        send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendActionPerformed(evt);
+            }
+        });
 
         leaveGroup.setText("Leave Group");
+        leaveGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leaveGroupActionPerformed(evt);
+            }
+        });
 
         name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name.setText(" ");
+
+        chatArea.setColumns(20);
+        chatArea.setRows(5);
+        jScrollPane1.setViewportView(chatArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,12 +135,12 @@ public class GroupView extends javax.swing.JFrame {
                         .addComponent(groupName, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chatArea, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(msgContent, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28))
+                        .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,8 +170,8 @@ public class GroupView extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(player7, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(chatArea, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(msgContent, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(send, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -160,6 +182,26 @@ public class GroupView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void starterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_starterActionPerformed
+        
+        GameGlobalVariables.getInstance().getClient().sendMessage(new StartGame());
+        
+    }//GEN-LAST:event_starterActionPerformed
+
+    private void leaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveGroupActionPerformed
+
+           GameGlobalVariables.getInstance().getClient().sendMessage(new RemoveMember(GameGlobalVariables.getInstance().getClient().getName()));
+           this.dispose();
+           new Menu().setVisible(true);
+           
+    }//GEN-LAST:event_leaveGroupActionPerformed
+
+    private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
+
+        GameGlobalVariables.getInstance().getClient().sendMessage(new Message(GameGlobalVariables.getInstance().getClient().getName(),GameGlobalVariables.getInstance().getClient().getGroupName(),msgContent.getText(),MessageType.UserToGroup));
+        
+    }//GEN-LAST:event_sendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,8 +239,9 @@ public class GroupView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel chatArea;
+    private javax.swing.JTextArea chatArea;
     private javax.swing.JLabel groupName;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton leaveGroup;
     private javax.swing.JTextField msgContent;
     private javax.swing.JLabel name;
@@ -245,24 +288,24 @@ public class GroupView extends javax.swing.JFrame {
     }
     
     public void gotPlayer(String name){
-        if(player1.getText() == ""){
+        if(player1.getText().equals("")){
          player1.setText(name);   
-        }else if(player2.getText() == ""){
+        }else if(player2.getText().equals("")){
          player2.setText(name);   
-        }else if(player3.getText() == ""){
+        }else if(player3.getText().equals("")){
          player3.setText(name);   
-        }else if(player4.getText() == ""){
+        }else if(player4.getText().equals("")){
          player4.setText(name);   
-        }else if(player5.getText() == ""){
+        }else if(player5.getText().equals("")){
          player5.setText(name);   
-        }else if(player6.getText() == ""){
+        }else if(player6.getText().equals("")){
          player6.setText(name);   
-        }else if(player7.getText() == ""){
+        }else if(player7.getText().equals("")){
          player7.setText(name);   
-        }else if(player8.getText() == ""){
+        }else if(player8.getText().equals("")){
          player8.setText(name);   
         }
-        chatArea.setText("\t\t" + name + " joined the room. ");
+        chatArea.setText(chatArea.getText() + "\n\t\t" + name + " joined the room. ");
     }
      
     public void lostPlayer(String name){
@@ -283,7 +326,7 @@ public class GroupView extends javax.swing.JFrame {
         }else if(player8.getText() == name){
          player8.setText("");   
         }
-        chatArea.setText("\t\t" + name + " left the room. ");
+        chatArea.setText(chatArea.getText() + "\t\t" + name + " left the room. ");
     }
     
 }

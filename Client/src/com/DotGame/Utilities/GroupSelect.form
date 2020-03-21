@@ -131,6 +131,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="password">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="error">
       <Properties>

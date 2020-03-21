@@ -126,6 +126,8 @@ public class HandleClient implements Runnable{
 			GroupList groupList = (GroupList) objectInputStream.readObject();
 			objectOutputStream.writeObject(new GroupList(GameGlobalVariables.getInstance().getGAMER().getClientList(groupList.getGroupName())));
 			
+			GameGlobalVariables.getInstance().getGAMER().send_message(new AddMember(clientName),groupName);
+			
 			while (true){
 				Object obj = objectInputStream.readObject();
 				
@@ -135,6 +137,8 @@ public class HandleClient implements Runnable{
 					addMember((AddMember)obj);
 				}else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
 					removeMember((RemoveMember)obj);
+				}else if (obj.toString().equals(String.valueOf(Request.STARTGAME))){
+					startGame();
 				}
 			}
 			
@@ -146,16 +150,21 @@ public class HandleClient implements Runnable{
 		
 	}
 	
-	private void receivedMessage(Message obj) {
+	private void startGame() {
+		GameGlobalVariables.getInstance().getGAMER().send_message(new StartGame(),groupName);
+	}
 	
+	private void receivedMessage(Message obj) {
+		GameGlobalVariables.getInstance().getGAMER().send_message(obj,groupName);
 	}
 	
 	private void addMember(AddMember addMember) {
-	
+		GameGlobalVariables.getInstance().getGAMER().send_message(addMember,groupName);
 	}
 	
 	private void removeMember(RemoveMember removeMember) {
-	
+		GameGlobalVariables.getInstance().getGAMER().remove_client(groupName,clientName);
+		GameGlobalVariables.getInstance().getGAMER().send_message(removeMember,groupName);
 	}
 
 }
