@@ -8,6 +8,7 @@ package com.DotGame.Utilities;
 import com.DotGame.Constant.MessageType;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Main.ListenGroup;
+import com.DotGame.Main.MainGame;
 import com.DotGame.Request.GroupList;
 import com.DotGame.Request.Message;
 import com.DotGame.Request.RemoveMember;
@@ -185,7 +186,7 @@ public class GroupView extends javax.swing.JFrame {
 
     private void starterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_starterActionPerformed
         
-        GameGlobalVariables.getInstance().getClient().sendMessage(new StartGame());
+        GameGlobalVariables.getInstance().getClient().sendMessage(new StartGame(GameGlobalVariables.getInstance().getSIZE()));
         
     }//GEN-LAST:event_starterActionPerformed
 
@@ -333,6 +334,11 @@ public class GroupView extends javax.swing.JFrame {
     private void destroy() {
         this.dispose();
         listen.stop();
+    }
+
+    public void startGame() {
+        new MainGame().initializer();
+        this.destroy();
     }
     
 }

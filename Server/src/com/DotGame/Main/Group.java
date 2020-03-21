@@ -4,6 +4,8 @@ package com.DotGame.Main;
  * @author Sahaj
  */
 
+import com.DotGame.Constant.LineType;
+
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,6 +22,7 @@ public class Group {
 	private String leader;
 	private HashMap<String,Client> clients;
 	private int size;
+	private Game game;
 	
 	/**
 	 * Creates a group using name and password
@@ -130,6 +133,14 @@ public class Group {
 			return clients.get(clientName).send_message(message);
 		}
 		return false;
+	}
+	
+	public void startGame(int size) {
+		game = new Game(size);
+	}
+	
+	public void updateGame(LineType lineType,int x,int y){
+		game.update(lineType,x,y);
 	}
 	
 }

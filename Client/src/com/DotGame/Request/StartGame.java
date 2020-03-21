@@ -13,7 +13,20 @@ import java.io.Serializable;
  * @author Sahaj
  */
 public class StartGame implements Serializable{
-        
+    
+    private int size;
+
+    public StartGame(int size) {
+        this.size = size;
+    }
+
+    public StartGame() {
+    }
+
+    public int getSize() {
+        return size;
+    }
+    
     @Override
     public String toString() {
         return String.valueOf(Request.STARTGAME);

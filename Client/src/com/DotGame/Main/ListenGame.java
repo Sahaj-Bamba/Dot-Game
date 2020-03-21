@@ -8,6 +8,7 @@ package com.DotGame.Main;
 import com.DotGame.Constant.Request;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.AddMember;
+import com.DotGame.Request.GameState;
 import com.DotGame.Request.Message;
 import com.DotGame.Request.RemoveMember;
 import com.DotGame.Utilities.GroupView;
@@ -16,12 +17,12 @@ import com.DotGame.Utilities.GroupView;
  *
  * @author Sahaj
  */
-public class ListenGroup implements Runnable{
+public class ListenGame implements Runnable{
     
-    private GroupView groupView;
+    private MainGame mainGame;
 
-    public ListenGroup(GroupView groupView) {
-        this.groupView = groupView;
+    public ListenGame(MainGame mainGame) {
+        this.mainGame = mainGame;
     }
     
     @Override
@@ -33,12 +34,10 @@ public class ListenGroup implements Runnable{
             
             if (obj.toString().equals(String.valueOf(Request.MESSAGE))){
                 receivedMessage((Message)obj);
-            }else if (obj.toString().equals(String.valueOf(Request.MEMBERADD))){
-                addMember((AddMember)obj);
             }else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
                 removeMember((RemoveMember)obj);    
-            }else if (obj.toString().equals(String.valueOf(Request.STARTGAME))){
-                startGame();    
+            }else if (obj.toString().equals(String.valueOf(Request.GAMESTATE))){
+                updateGame((GameState)obj);    
             }
             
         }
@@ -46,23 +45,17 @@ public class ListenGroup implements Runnable{
     }
 
     private void receivedMessage(Message obj) {
-        groupView.gotMessage(obj.getFrom() + " :- " + obj.getContent());
-    }
-
-    private void addMember(AddMember addMember) {
-        if (addMember.getName().equals(GameGlobalVariables.getInstance().getClient().getName())){ 
-            return;
-        }
-        groupView.gotPlayer(addMember.getName());
+        mainGame.gotMessage(obj.getFrom() + " :- " + obj.getContent());
     }
 
     private void removeMember(RemoveMember removeMember) {
-        groupView.lostPlayer(removeMember.getName());
+        mainGame.lostPlayer(removeMember.getName());
     }
 
-    private void startGame() {
-        System.out.println("Started Game in group " + GameGlobalVariables.getInstance().getClient().getGroupName() + " of " + GameGlobalVariables.getInstance().getClient().getName());
-        groupView.startGame();
+    private void updateGame(GameState gameState) {
+        mainGame.updateGame(gameState);
     }
+    
+
     
 }
