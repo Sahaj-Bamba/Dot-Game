@@ -117,4 +117,8 @@ public class GameGlobalVariables {
     
     }
 
+    public void destroy() {
+        gameGlobalVariables = null;
+    }
+
 }

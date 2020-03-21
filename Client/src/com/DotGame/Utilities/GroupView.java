@@ -192,7 +192,8 @@ public class GroupView extends javax.swing.JFrame {
     private void leaveGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveGroupActionPerformed
 
            GameGlobalVariables.getInstance().getClient().sendMessage(new RemoveMember(GameGlobalVariables.getInstance().getClient().getName()));
-           this.dispose();
+           GameGlobalVariables.getInstance().destroy();
+           this.destroy();
            new Menu().setVisible(true);
            
     }//GEN-LAST:event_leaveGroupActionPerformed
@@ -309,24 +310,29 @@ public class GroupView extends javax.swing.JFrame {
     }
      
     public void lostPlayer(String name){
-        if(player1.getText() == name){
+        if(player1.getText().equals(name)){
          player1.setText("");   
-        }else if(player2.getText() == name){
+        }else if(player2.getText().equals(name)){
          player2.setText("");   
-        }else if(player3.getText() == name){
+        }else if(player3.getText().equals(name)){
          player3.setText("");   
-        }else if(player4.getText() == name){
+        }else if(player4.getText().equals(name)){
          player4.setText("");   
-        }else if(player5.getText() == name){
+        }else if(player5.getText().equals(name)){
          player5.setText("");   
-        }else if(player6.getText() == name){
+        }else if(player6.getText().equals(name)){
          player6.setText("");   
-        }else if(player7.getText() == name){
+        }else if(player7.getText().equals(name)){
          player7.setText("");   
-        }else if(player8.getText() == name){
+        }else if(player8.getText().equals(name)){
          player8.setText("");   
         }
-        chatArea.setText(chatArea.getText() + "\t\t" + name + " left the room. ");
+        chatArea.setText(chatArea.getText() + "\n\t\t" + name + " left the room. ");
+    }
+
+    private void destroy() {
+        this.dispose();
+        listen.stop();
     }
     
 }
