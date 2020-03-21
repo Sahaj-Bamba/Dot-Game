@@ -20,7 +20,7 @@ public class GameGlobalVariables {
      */
     private static GameGlobalVariables gameGlobalVariables = null;
     
-    private Client Gamer;
+    private Client gamer = null;
     
     /**
      * Server Configuration Variables
@@ -73,7 +73,6 @@ public class GameGlobalVariables {
         calculateFraction(1080,1920);
         port = 5555;
         ip = "localhost";
-        Gamer = new Client(ip,port);
     }
     
     public int getSIZE() {
@@ -89,7 +88,10 @@ public class GameGlobalVariables {
     }
     
     public Client getClient(){
-        return this.Gamer;
+        if(gamer == null){
+            gamerinit();
+        }
+        return this.gamer;
     }
     
     public double getScreenHeightFraction() {
@@ -118,7 +120,11 @@ public class GameGlobalVariables {
     }
 
     public void destroy() {
-        gameGlobalVariables = null;
+        gamer = null;
+    }
+
+    private void gamerinit() {
+        gamer = new Client(ip,port);
     }
 
 }
