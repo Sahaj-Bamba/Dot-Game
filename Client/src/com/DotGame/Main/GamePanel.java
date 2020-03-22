@@ -164,18 +164,18 @@ public class GamePanel extends JPanel {
         click2 = null;
         if ( Math.abs(click1.x - click2.x) + Math.abs(click1.y - click2.y) == 1 ) {
                 // line possible
-            if (click1.x == click2.x){
+            if (click1.y == click2.y){
                 // vertical line
-                tmp = Math.min(click1.y, click2.y);
-                if (gameState.getVColor(click1.x, tmp) == -1){
-                    GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(click1.x, tmp), LineType.Vertical));
+                tmp = Math.min(click1.x, click2.x);
+                if (gameState.getVColor(tmp,click1.y) == -1){
+                    GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(tmp,click1.y), LineType.Vertical));
                 }
             }
             else{
                 // horizontal line
-                tmp = Math.min(click1.x, click2.x);
-                if (gameState.getVColor(tmp,click1.y) == -1){
-                    GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(tmp, click1.y), LineType.Horizontal));
+                tmp = Math.min(click1.y, click2.y);
+                if (gameState.getVColor(click1.x,tmp) == -1){
+                    GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(click1.x,tmp), LineType.Horizontal));
                 }
             }
         }

@@ -1,6 +1,9 @@
 
 package com.DotGame.Request;
 
+import com.DotGame.Constant.LineType;
+
+import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -67,7 +70,14 @@ public class GameState implements Serializable{
 	}
 	
 	public void makeMove(Move move){
-		
+		if (move.getLineType() == LineType.Horizontal){
+			addHorizontalLine((int) move.getPoint().getX(),(int) move.getPoint().getY());
+			if (move.getPoint().x == 0){
+				
+			}
+		}else if (move.getLineType() == LineType.Vertical){
+			addVerticalLine((int) move.getPoint().getX(),(int) move.getPoint().getY());
+		}
 	}
 	
 }
