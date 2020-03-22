@@ -5,10 +5,17 @@
  */
 package com.DotGame.Request;
 
+import com.DotGame.Constant.Request;
+
+import java.io.Serializable;
+
 /**
  *
  * @author Sahaj
  */
-public class MoveToStart {
-    
+public class MoveToStart implements Serializable {
+	@Override
+	public String toString() {
+		return String.valueOf(Request.MOVETOSTART);
+	}
 }
