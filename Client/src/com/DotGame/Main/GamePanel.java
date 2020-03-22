@@ -7,10 +7,8 @@ package com.DotGame.Main;
 
 import com.DotGame.Request.GameState;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
@@ -25,7 +23,6 @@ import javax.swing.JPanel;
  */
 public class GamePanel extends JPanel {
 
-    
     private int WIDTH  = 440;
     private int HEIGHT = 440;
 
@@ -42,12 +39,14 @@ public class GamePanel extends JPanel {
     private Line2D[][] hLines = new Line2D[10][10];
     private Rectangle2D[][] rects = new Rectangle2D[10][10];
     
+    private boolean canMakeMove;
     
     public GamePanel(int size){
         this.size = size;
         setBorder(BorderFactory.createLineBorder(Color.black));
         setBackground(Color.white);
         setSize(WIDTH, HEIGHT);
+        canMakeMove = false;
         init();
     }
 
@@ -71,8 +70,7 @@ public class GamePanel extends JPanel {
                 hLines[i][j] = new Line2D.Double(offset + j*gridSize , offset + i*gridSize,offset + (j+1)*gridSize , offset + (i)*gridSize);
             }
         }
-        System.out.println("hi");
-        this.repaint();
+        repaint();
     }
     
     
@@ -84,9 +82,9 @@ public class GamePanel extends JPanel {
         Graphics2D g2d = (Graphics2D)g;
         
         // Draw Dots
-        g2d.setColor(Color.blue);
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
+                g2d.setColor(Color.blue);
                 g2d.fill(dots[i][j]);
                 if (gameState.getVColor(i,j) != -1){
                     g2d.setColor(colors[gameState.getVColor(i,j)]);
@@ -102,6 +100,7 @@ public class GamePanel extends JPanel {
                 }
             }
         }
+        
     }
     
     public void update(GameState gameState){
@@ -109,6 +108,10 @@ public class GamePanel extends JPanel {
         this.repaint();
     }
         
+    public void makeMove(){
+        canMakeMove = true;
+    }
+    
     
     
 }

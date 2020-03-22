@@ -176,7 +176,7 @@ public class MainGame extends javax.swing.JFrame {
 
     private String[] players;
     private Thread listen;
-    private JPanel game;
+    private GamePanel game;
     
     public void initializer(int size) {
         playerName.setText(GameGlobalVariables.getInstance().getClient().getName());
@@ -207,6 +207,9 @@ public class MainGame extends javax.swing.JFrame {
     }
 
     void updateGame(GameState gameState) {
+        if (players[gameState.getTurn()].equals(GameGlobalVariables.getInstance().getClient().getName())) {
+            game.makeMove();
+        }
         game.update(gameState);
     }
 
