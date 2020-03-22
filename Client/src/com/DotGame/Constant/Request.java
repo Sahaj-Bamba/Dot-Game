@@ -16,6 +16,7 @@ public enum Request {
         MEMBERREMOVE("9"),
         STARTGAME("10"), 
         GAMESTATE("11"), 
+        MOVE("12"), 
         
 	
 	;
