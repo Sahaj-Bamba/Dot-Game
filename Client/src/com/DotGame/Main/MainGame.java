@@ -222,6 +222,10 @@ public class MainGame extends javax.swing.JFrame {
 
     void gameOver(int name) {
         System.out.println(players[name]);
+        GameGlobalVariables.getInstance().getClient().sendMessage(new RemoveMember(GameGlobalVariables.getInstance().getClient().getName()));
+        GameGlobalVariables.getInstance().destroy();
+        this.destroy();
+        new Menu().setVisible(true);
     }
     
 }
