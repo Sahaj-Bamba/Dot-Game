@@ -14,6 +14,7 @@ import com.DotGame.Request.RemoveMember;
 import com.DotGame.Test.CanvasPannel;
 import com.DotGame.Test.MyCanvas;
 import com.DotGame.Utilities.Menu;
+import com.DotGame.Utilities.OverScreen;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -225,7 +226,7 @@ public class MainGame extends javax.swing.JFrame {
         GameGlobalVariables.getInstance().getClient().sendMessage(new RemoveMember(GameGlobalVariables.getInstance().getClient().getName()));
         GameGlobalVariables.getInstance().destroy();
         this.destroy();
-        new Menu().setVisible(true);
+        new OverScreen().initializer(players[name]);
     }
     
 }
