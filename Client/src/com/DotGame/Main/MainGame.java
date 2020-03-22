@@ -30,7 +30,6 @@ public class MainGame extends javax.swing.JFrame {
      */
     public MainGame() {
         initComponents();
-        starterGame();
     }
 
     /**
@@ -42,7 +41,6 @@ public class MainGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        canvas1 = new java.awt.Canvas();
         jScrollPane1 = new javax.swing.JScrollPane();
         chatArea = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
@@ -53,10 +51,6 @@ public class MainGame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 600));
-
-        canvas1.setBackground(new java.awt.Color(0, 204, 51));
-        canvas1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        canvas1.setName(""); // NOI18N
 
         chatArea.setColumns(50);
         chatArea.setRows(5);
@@ -85,14 +79,9 @@ public class MainGame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(turnOf, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(100, 100, 100)
+                .addGap(169, 169, 169)
+                .addComponent(turnOf, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(231, 231, 231)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(playerName, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,14 +103,11 @@ public class MainGame extends javax.swing.JFrame {
                     .addComponent(playerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(leaveGame, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
                 .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(msgContent))))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(msgContent))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -179,7 +165,6 @@ public class MainGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Canvas canvas1;
     private javax.swing.JTextArea chatArea;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -191,8 +176,9 @@ public class MainGame extends javax.swing.JFrame {
 
     private String[] players;
     private Thread listen;
+    private JPanel game;
     
-    public void initializer() {
+    public void initializer(int size) {
         playerName.setText(GameGlobalVariables.getInstance().getClient().getName());
         
         GameGlobalVariables.getInstance().getClient().sendMessage(new GroupList(GameGlobalVariables.getInstance().getClient().getGroupName()));
@@ -203,6 +189,7 @@ public class MainGame extends javax.swing.JFrame {
         listen = new Thread(new ListenGame(this));
         listen.start();
         
+        starterGame(size);
         this.setVisible(true);
     }
     
@@ -220,14 +207,13 @@ public class MainGame extends javax.swing.JFrame {
     }
 
     void updateGame(GameState gameState) {
-        
+        game.update(gameState);
     }
 
-    private void starterGame() {
-//        Canvas c = new GameCanvas();
-        JPanel c = new GamePanel(3);
-        c.setBounds(50, 110, 440, 440);
-        this.add(c);
+    private void starterGame(int size) {
+        game = new GamePanel(size);
+        game.setBounds(50, 110, 440, 440);
+        this.add(game);
     }
     
 }

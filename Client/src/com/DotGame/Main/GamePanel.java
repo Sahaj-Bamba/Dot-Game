@@ -37,6 +37,12 @@ public class GamePanel extends JPanel {
     private int dotSize = 20;
     private int offset = 10;
     
+    private Ellipse2D[][] dots = new Ellipse2D[10][10];
+    private Line2D[][] vLines = new Line2D[10][10];
+    private Line2D[][] hLines = new Line2D[10][10];
+    private Rectangle2D[][] rects = new Rectangle2D[10][10];
+    
+    
     public GamePanel(int size){
         this.size = size;
         setBorder(BorderFactory.createLineBorder(Color.black));
@@ -71,13 +77,9 @@ public class GamePanel extends JPanel {
     
     
     
-    private Ellipse2D[][] dots = new Ellipse2D[10][10];
-    private Line2D[][] vLines = new Line2D[10][10];
-    private Line2D[][] hLines = new Line2D[10][10];
-    private Rectangle2D[][] rects = new Rectangle2D[10][10];
     
     protected void paintComponent(Graphics g) {
-        System.out.println("hello");
+        
         super.paintComponent(g);       
         Graphics2D g2d = (Graphics2D)g;
         
@@ -100,6 +102,11 @@ public class GamePanel extends JPanel {
                 }
             }
         }
+    }
+    
+    public void update(GameState gameState){
+        this.gameState = gameState;
+        this.repaint();
     }
         
     

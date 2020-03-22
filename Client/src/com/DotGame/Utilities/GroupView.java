@@ -336,8 +336,8 @@ public class GroupView extends javax.swing.JFrame {
         listen.stop();
     }
 
-    public void startGame() {
-        new MainGame().initializer();
+    public void startGame(int size) {
+        new MainGame().initializer(size);
         this.destroy();
     }
     
