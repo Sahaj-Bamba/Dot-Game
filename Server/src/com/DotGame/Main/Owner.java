@@ -114,6 +114,9 @@ public class Owner {
 		if (group_exist(groupName)){
 			groups.get(groupName).remove_client(clientName);
 		}
+		if ( groups.get(groupName).getClientList()[0].equals("")){
+			remove_group(groupName);
+		}
 	}
 	
 	/**
@@ -200,5 +203,17 @@ public class Owner {
 		groups.get(group).makeMove(move);
 	}
 	
-	public void cleanse()
+	/**
+	 * remove all groups having no members.
+	 */
+	public void cleanse(){
+		Iterator group = groups.entrySet().iterator();
+		while (group.hasNext()){
+			Map.Entry g = (Map.Entry)group.next();
+			if ( ((Group)g.getValue()).getClientList()[0].equals("")){
+				remove_group((String)g.getKey());
+			}
+		}
+	}
+	
 }
