@@ -25,11 +25,10 @@ public class Owner {
 	private HashMap<String,Group> groups;
 	
 	/**
-	 * Initialises groups hash map, creates a default group extra.
+	 * Initialises groups hash map.
 	 */
 	public Owner(){
 		groups = new HashMap<String, Group>();
-		groups.put("extra",new Group("extra","","def"));
 	}
 	
 	/**
@@ -201,4 +200,5 @@ public class Owner {
 		groups.get(group).makeMove(move);
 	}
 	
+	public void cleanse()
 }
