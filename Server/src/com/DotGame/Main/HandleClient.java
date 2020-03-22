@@ -146,6 +146,8 @@ public class HandleClient implements Runnable{
 				}else if (obj.toString().equals(String.valueOf(Request.STARTGAME))){
 					startGame((StartGame) obj);
 					return;
+				}else if (obj.toString().equals(String.valueOf(Request.MOVETOSTART))){
+					return;
 				}
 			}
 			

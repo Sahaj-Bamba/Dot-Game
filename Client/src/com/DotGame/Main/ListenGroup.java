@@ -9,6 +9,7 @@ import com.DotGame.Constant.Request;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.AddMember;
 import com.DotGame.Request.Message;
+import com.DotGame.Request.MoveToStart;
 import com.DotGame.Request.RemoveMember;
 import com.DotGame.Request.StartGame;
 import com.DotGame.Utilities.GroupView;
@@ -62,6 +63,9 @@ public class ListenGroup implements Runnable{
     }
 
     private void startGame(StartGame startGame) {
+        if (!GameGlobalVariables.getInstance().getClient().isIsOwner()) {
+            GameGlobalVariables.getInstance().getClient().sendMessage(new MoveToStart());
+        }
         System.out.println("Started Game in group " + GameGlobalVariables.getInstance().getClient().getGroupName() + " of " + GameGlobalVariables.getInstance().getClient().getName());
         groupView.startGame(startGame.getSize());
     }

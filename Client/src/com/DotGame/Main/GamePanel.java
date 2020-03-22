@@ -53,6 +53,7 @@ public class GamePanel extends JPanel {
         setBackground(Color.white);
         setSize(WIDTH, HEIGHT);
         canMakeMove = false;
+        gameState = new GameState(size);
         init();
         
         addMouseListener(new MouseAdapter() {

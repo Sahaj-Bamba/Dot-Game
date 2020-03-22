@@ -18,6 +18,7 @@ public enum Request {
 	GAMESTATE("11"),
 	MOVE("12"),
 	GAMEOVER("13"),
+	MOVETOSTART("14"),
 	
 	;
 	
