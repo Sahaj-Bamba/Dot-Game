@@ -5,6 +5,7 @@ package com.DotGame.Main;
  */
 
 import com.DotGame.Constant.LineType;
+import com.DotGame.Request.GameOver;
 import com.DotGame.Request.Move;
 
 import java.io.ObjectOutputStream;
@@ -142,7 +143,10 @@ public class Group {
 	}
 	
 	public void makeMove(Move move){
-		game.makeMove(move);
+		if(game.makeMove(move)){
+			send_message(game.getGameState());
+			send_message(new GameOver(game.getWinner()));
+		}
 	}
 	
 }

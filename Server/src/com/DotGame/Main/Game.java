@@ -26,8 +26,13 @@ public class Game {
 		return gameState;
 	}
 	
-	public void makeMove(Move move){
+	public boolean makeMove(Move move){
 		gameState.makeMove(move);
+		return gameState.isOver();
+	}
+	
+	public int getWinner(){
+		return gameState.getWinner();
 	}
 	
 }
