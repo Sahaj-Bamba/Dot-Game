@@ -21,6 +21,8 @@ public class GameState implements Serializable{
 	private int[][] rectangles = new int [10][10];
 	
 	public GameState(int size) {
+		
+		turn = 0;
 		for (int i = 0; i < size - 1; i++) {
 			for (int j = 0; j < size; j++) {
 				verticalLines[i][j] = -1;
@@ -36,6 +38,7 @@ public class GameState implements Serializable{
 				rectangles[i][j] = -1;
 			}
 		}
+		
 	}
 	
 	
@@ -61,6 +64,10 @@ public class GameState implements Serializable{
 	
 	public int getTurn(){
 		return turn;
+	}
+	
+	public void makeMove(Move move){
+		
 	}
 	
 }

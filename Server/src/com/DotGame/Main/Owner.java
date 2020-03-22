@@ -6,6 +6,8 @@ package com.DotGame.Main;
  */
 
 
+import com.DotGame.Request.Move;
+
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -179,6 +181,24 @@ public class Owner {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Start the game of the supplied group
+	 * @param group Name of the group
+	 * @param size The size of the board
+	 */
+	public void startGame(String group,int size){
+		groups.get(group).startGame(size);
+	}
+	
+	/**
+	 * Make a move in the supplied group
+	 * @param group Name of the group
+	 * @param move The move to make
+	 */
+	public void makeMove(String group, Move move){
+		groups.get(group).makeMove(move);
 	}
 	
 }

@@ -2,12 +2,12 @@ package com.DotGame.Main;
 
 import com.DotGame.Constant.LineType;
 import com.DotGame.Request.GameState;
+import com.DotGame.Request.Move;
 
 public class Game {
+	
 	private int size;
-	private String[] players = new String[8];
 	private GameState gameState;
-	private String groupName;
 	
 	public Game(int Size) {
 		this.size = size;
@@ -20,6 +20,14 @@ public class Game {
 		}else if (lineType == LineType.Vertical){
 			gameState.addVerticalLine(x,y);
 		}
+	}
+	
+	public GameState getGameState() {
+		return gameState;
+	}
+	
+	public void makeMove(Move move){
+		gameState.makeMove(move);
 	}
 	
 }

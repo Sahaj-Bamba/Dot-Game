@@ -5,6 +5,7 @@ package com.DotGame.Main;
  */
 
 import com.DotGame.Constant.LineType;
+import com.DotGame.Request.Move;
 
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
@@ -137,10 +138,11 @@ public class Group {
 	
 	public void startGame(int size) {
 		game = new Game(size);
+		send_message(game.getGameState());
 	}
 	
-	public void updateGame(LineType lineType,int x,int y){
-		game.update(lineType,x,y);
+	public void makeMove(Move move){
+		game.makeMove(move);
 	}
 	
 }
