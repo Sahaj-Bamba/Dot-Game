@@ -150,7 +150,6 @@ public class Group {
 	
 	public void startGame(int size) {
 		game = new Game(size);
-		send_message(game.getGameState());
 	}
 	
 	public void makeMove(Move move){
@@ -158,6 +157,10 @@ public class Group {
 			send_message(game.getGameState());
 			send_message(new GameOver(game.getWinner()));
 		}
+	}
+	
+	public void sendState(){
+		send_message(game.getGameState());
 	}
 	
 }

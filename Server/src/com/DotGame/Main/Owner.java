@@ -204,6 +204,15 @@ public class Owner {
 	}
 	
 	/**
+	 * Send the current state of the game
+	 * may be used for synchronisation purposes
+	 * @param group Name of the group
+	 */
+	public void sendState(String group){
+		groups.get(group).sendState();
+	}
+	
+	/**
 	 * remove all groups having no members.
 	 */
 	public void cleanse(){

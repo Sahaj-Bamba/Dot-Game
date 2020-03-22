@@ -44,7 +44,7 @@ public class GameGlobalVariables {
      * Game Control Variables
      *
      */
-    private int SIZE;
+    private int SIZE = 3;
     
     /**
      * Private constructor calls init method
