@@ -23,17 +23,17 @@ public class GameState implements Serializable{
 	public GameState(int size) {
 		for (int i = 0; i < size - 1; i++) {
 			for (int j = 0; j < size; j++) {
-				verticalLines[i][j] = 0;
+				verticalLines[i][j] = -1;
 			}
 		}
 		for (int i = 0; i < size ; i++) {
 			for (int j = 0; j < size - 1; j++) {
-				horizontalLines[i][j] = 0;
+				horizontalLines[i][j] = -1;
 			}
 		}
 		for (int i = 0; i < size - 1; i++) {
 			for (int j = 0; j < size - 1; j++) {
-				rectangles[i][j] = 0;
+				rectangles[i][j] = -1;
 			}
 		}
 	}
@@ -41,12 +41,26 @@ public class GameState implements Serializable{
 	
 	public void addHorizontalLine(int x, int y) {
 		horizontalLines[x][y] = turn;
-		turn++;
 	}
 	
 	public void addVerticalLine(int x, int y) {
 		verticalLines[x][y] = turn;
-		turn++;
+	}
+	
+	public int getVColor(int i, int j) {
+		return verticalLines[i][j];
+	}
+	
+	public int getHColor(int i, int j) {
+		return horizontalLines[i][j];
+	}
+	
+	public int getRColor(int i, int j) {
+		return rectangles[i][j];
+	}
+	
+	public int getTurn(){
+		return turn;
 	}
 	
 }
