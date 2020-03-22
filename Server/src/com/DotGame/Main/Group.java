@@ -75,6 +75,17 @@ public class Group {
 	 * @return true if the client has been successfully removed
 	 */
 	public boolean remove_client(String name){
+		if (game != null){
+			String[] st = getClientList();
+			int i=0;
+			for (String s: st) {
+				if (s.equals(name)) {
+					break;
+				}
+				i++;
+			}
+			game.remove(i);
+		}
 		if (client_exist(name)) {
 			clients.remove(name);
 			return true;

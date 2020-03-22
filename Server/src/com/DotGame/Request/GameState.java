@@ -137,4 +137,7 @@ public class GameState implements Serializable{
 		return x;
 	}
 	
+	public void remove(int i){
+		score[i] = -1;
+	}
 }

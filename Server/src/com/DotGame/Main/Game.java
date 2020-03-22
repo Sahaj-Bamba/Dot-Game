@@ -35,4 +35,8 @@ public class Game {
 		return gameState.getWinner();
 	}
 	
+	public void remove(int i){
+		gameState.remove(i);
+	}
+	
 }

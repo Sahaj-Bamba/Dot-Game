@@ -8,6 +8,7 @@ package com.DotGame.Main;
 import com.DotGame.Constant.Request;
 import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.AddMember;
+import com.DotGame.Request.GameOver;
 import com.DotGame.Request.GameState;
 import com.DotGame.Request.Message;
 import com.DotGame.Request.RemoveMember;
@@ -38,6 +39,8 @@ public class ListenGame implements Runnable{
                 removeMember((RemoveMember)obj);    
             }else if (obj.toString().equals(String.valueOf(Request.GAMESTATE))){
                 updateGame((GameState)obj);    
+            }else if (obj.toString().equals(String.valueOf(Request.GAMEOVER))){
+                gameOver((GameOver)obj);    
             }
             
         }
@@ -54,6 +57,11 @@ public class ListenGame implements Runnable{
 
     private void updateGame(GameState gameState) {
         mainGame.updateGame(gameState);
+    }
+
+    private void gameOver(GameOver gameOver) {
+        System.out.println("Game Over ");
+        mainGame.gameOver(gameOver.getName());
     }
     
 

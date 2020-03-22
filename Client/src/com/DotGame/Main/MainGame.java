@@ -211,12 +211,17 @@ public class MainGame extends javax.swing.JFrame {
             game.makeMove();
         }
         game.update(gameState);
+        turnOf.setText(players[gameState.getTurn()]);
     }
 
     private void starterGame(int size) {
         game = new GamePanel(size);
         game.setBounds(50, 110, 440, 440);
         this.add(game);
+    }
+
+    void gameOver(int name) {
+        System.out.println(players[name]);
     }
     
 }
