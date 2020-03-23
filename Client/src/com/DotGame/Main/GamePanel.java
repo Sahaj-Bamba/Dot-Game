@@ -29,9 +29,9 @@ public class GamePanel extends JPanel {
 
     private int WIDTH  = 440;
     private int HEIGHT = 440;
-
+    
     private Color[] colors = new Color[9];
-    GameState gameState;
+    private GameState gameState;
     private int size;
 
     private int gridSize = 50;
@@ -57,7 +57,7 @@ public class GamePanel extends JPanel {
         setBackground(Color.white);
         setSize(WIDTH, HEIGHT);
         canMakeMove = false;
-        gameState = new GameState(size,2);
+        gameState = new GameState(1,1);
         init();
         
         addMouseListener(new MouseAdapter() {

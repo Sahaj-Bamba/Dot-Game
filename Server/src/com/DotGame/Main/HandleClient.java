@@ -112,6 +112,10 @@ public class HandleClient implements Runnable{
 			return new Response(Responses.ERROR,"Password doesnot match.");
 		}
 		
+		if (GameGlobalVariables.getInstance().getGAMER().numOfClients(groupDetails.get_group_name()) > GameGlobalVariables.getInstance().getSIZE()){
+			return new Response(Responses.ERROR,"Password doesnot match.");
+		}
+		
 		if (GameGlobalVariables.getInstance().getGAMER().client_exist(groupName,clientName)){
 			return new Response(Responses.ERROR,"A gamer with that name already exist .");
 		}

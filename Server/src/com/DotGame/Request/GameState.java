@@ -19,16 +19,19 @@ import java.io.Serializable;
  * will be sent by the server to be drawn by the client on screen.
  */
 public class GameState implements Serializable{
+	public int num;
 	private int turn;
 	private int size;
+	private int numOfPlayer;
 	private int totalScore;
 	private int[] score = new int [10];
 	private int[][] horizontalLines = new int[10][10];
 	private int[][] verticalLines = new int[10][10];
 	private int[][] rectangles = new int [10][10];
 	
-	public GameState(int size) {
+	public GameState(int size, int numOfPlayer) {
 		this.size = size;
+		this.numOfPlayer = numOfPlayer;
 		turn = 0;
 		totalScore = 0;
 		for (int i = 0; i < 10; i++) {
@@ -116,8 +119,8 @@ public class GameState implements Serializable{
 			}
 		}
 		if (!scored){
-			while(score[(++turn)%size] == -1);
-			turn %= size;
+			while(score[(++turn)%numOfPlayer] == -1);
+			turn %= numOfPlayer;
 		}
 	}
 	

@@ -207,9 +207,19 @@ public class Owner {
 	 * Send the current state of the game
 	 * may be used for synchronisation purposes
 	 * @param group Name of the group
+	 * @param client Name of client
 	 */
 	public void sendState(String group,String client){
 		groups.get(group).sendState(client);
+	}
+	
+	/**
+	 * Send the number of clients in a group
+	 * @param group Name of the group
+	 * @return number of clients in a group
+	 */
+	public int numOfClients (String group){
+		return groups.get(group).numOfClients();
 	}
 	
 	/**

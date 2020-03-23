@@ -4,6 +4,9 @@ package com.DotGame.Main;
  * @author Sahaj
  */
 
+import com.DotGame.Constant.Request;
+import com.DotGame.Request.GameState;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -34,6 +37,11 @@ public class Client {
 	 * @return true if message is sent successfully else false
 	 */
 	public boolean send_message(Object message) {
+//		if (message.toString().equals(String.valueOf(Request.GAMESTATE))){
+//			((GameState) message).num = (int) ((Math.random()*1000)%900);
+//			System.out.println(((GameState) message).num);
+//			System.out.println("turn is of " + ((GameState) message).getTurn());
+//		}
 		try {
 			objectOutputStream.writeObject(message);
 			objectOutputStream.flush();

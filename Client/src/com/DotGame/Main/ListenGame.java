@@ -39,7 +39,9 @@ public class ListenGame implements Runnable{
             }else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
                 removeMember((RemoveMember)obj);    
             }else if (obj.toString().equals(String.valueOf(Request.GAMESTATE))){
-                updateGame((GameState)obj);
+//                System.out.println("turn is of " + ((GameState) obj).getTurn());
+//                System.out.println(((GameState) obj).num);
+	        updateGame((GameState)obj);
             }else if (obj.toString().equals(String.valueOf(Request.GAMEOVER))){
                 gameOver((GameOver)obj);    
             }

@@ -9,9 +9,9 @@ public class Game {
 	private int size;
 	private GameState gameState;
 	
-	public Game(int size) {
+	public Game(int size, int numOfPlayers) {
 		this.size = size;
-		gameState = new GameState(size);
+		gameState = new GameState(size,numOfPlayers);
 	}
 	
 	public void update(LineType lineType, int x , int y){

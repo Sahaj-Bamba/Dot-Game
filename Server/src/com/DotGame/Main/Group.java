@@ -148,8 +148,18 @@ public class Group {
 		return false;
 	}
 	
+	public int numOfClients(){
+		int x=0;
+		Iterator client = clients.entrySet().iterator();
+		while (client.hasNext()){
+			Map.Entry g = (Map.Entry)client.next();
+			x++;
+		}
+		return x;
+	}
+	
 	public void startGame(int size) {
-		game = new Game(size);
+		game = new Game(size,numOfClients());
 	}
 	
 	public void makeMove(Move move){

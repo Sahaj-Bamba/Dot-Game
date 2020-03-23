@@ -27,21 +27,10 @@ public class GameGlobalVariables {
     private int port;
     
     /**
-     * Screen size controls
-     *
-     */
-    private double defaultScreenHeight;
-    private double defaultScreenWidth;
-    private double screenHeight;
-    private double screenWidth;
-    private double screenHeightFraction;
-    private double screenWidthFraction;
-    
-    /**
      * Game Control Variables
      *
      */
-    private int SIZE;
+    private int SIZE = 8;
     private Owner GAMER;
     
     /**
@@ -68,7 +57,6 @@ public class GameGlobalVariables {
      *
      */
     private void init(){
-        calculateFraction(1080,1920);
         port = 5555;
         GAMER = new Owner();
     }
@@ -85,29 +73,4 @@ public class GameGlobalVariables {
         return GAMER;
     }
     
-    public double getScreenHeightFraction() {
-        return screenHeightFraction;
-    }
-
-    public double getScreenWidthFraction() {
-        return screenWidthFraction;
-    }
-    
-    /**
-     * All The work of the screen size adjusting screen resolution independence
-     *
-     * @param x the widthe of the screen
-     * @param y the height of the screen
-     */
-    public void calculateFraction(double x, double y){
-    
-        this.defaultScreenHeight=x;
-        this.defaultScreenWidth=y;
-        screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-        screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-        screenHeightFraction = screenHeight/defaultScreenHeight;
-        screenWidthFraction = screenWidth/defaultScreenWidth;
-    
-    }
-
 }
