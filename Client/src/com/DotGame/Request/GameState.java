@@ -2,6 +2,7 @@
 package com.DotGame.Request;
 
 import com.DotGame.Constant.LineType;
+import com.DotGame.Constant.Request;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -20,28 +21,30 @@ import java.io.Serializable;
 public class GameState implements Serializable{
 	private int turn;
 	private int size;
+        private int numOfPlayer;
 	private int totalScore;
 	private int[] score = new int [10];
 	private int[][] horizontalLines = new int[10][10];
 	private int[][] verticalLines = new int[10][10];
 	private int[][] rectangles = new int [10][10];
 	
-	public GameState(int size) {
+	public GameState(int size, int numOfPlayer) {
 		this.size = size;
+                this.numOfPlayer = numOfPlayer;
 		turn = 0;
 		totalScore = 0;
-		for (int i = 0; i < size - 1; i++) {
-			for (int j = 0; j < size; j++) {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
 				verticalLines[i][j] = -1;
 			}
 		}
-		for (int i = 0; i < size ; i++) {
-			for (int j = 0; j < size - 1; j++) {
+		for (int i = 0; i < 10 ; i++) {
+			for (int j = 0; j < 10; j++) {
 				horizontalLines[i][j] = -1;
 			}
 		}
-		for (int i = 0; i < size - 1; i++) {
-			for (int j = 0; j < size - 1; j++) {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
 				rectangles[i][j] = -1;
 			}
 		}
@@ -81,8 +84,8 @@ public class GameState implements Serializable{
 		x = move.getPoint().x;
 		y = move.getPoint().y;
 		boolean scored = false;
-		if (move.getLineType() == LineType.Horizontal){
-			addHorizontalLine((int) move.getPoint().getX(),(int) move.getPoint().getY());
+		if (move.getLineType().equals(LineType.Horizontal)){
+			addHorizontalLine(x,y);
 			if (move.getPoint().x != 0){
 				if (horizontalLines[x-1][y] != -1 && verticalLines[x-1][y] != -1 && verticalLines[x-1][y+1] != -1){
 					score[turn]++;
@@ -97,8 +100,8 @@ public class GameState implements Serializable{
 				rectangles[x][y] = turn;
 				scored = true;
 			}
-		}else if (move.getLineType() == LineType.Vertical){
-			addVerticalLine((int) move.getPoint().getX(),(int) move.getPoint().getY());
+		}else if (move.getLineType().equals(LineType.Vertical)){
+			addVerticalLine(x,y);
 			if (move.getPoint().y != 0){
 				if (horizontalLines[x][y-1] != -1 && verticalLines[x][y-1] != -1 && horizontalLines[x+1][y-1] != -1){
 					score[turn]++;
@@ -115,8 +118,8 @@ public class GameState implements Serializable{
 			}
 		}
 		if (!scored){
-			while(score[(++turn)%size] == -1);
-			turn %= size;
+			while(score[(++turn)%numOfPlayer] == -1);
+			turn %= numOfPlayer;
 		}
 	}
 	
@@ -140,4 +143,9 @@ public class GameState implements Serializable{
 	public void remove(int i){
 		score[i] = -1;
 	}
+	
+	public String toString() {
+		return String.valueOf(Request.GAMESTATE);
+	}
+	
 }

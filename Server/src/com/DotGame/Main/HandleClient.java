@@ -145,7 +145,6 @@ public class HandleClient implements Runnable{
 					removeMember((RemoveMember)obj);
 				}else if (obj.toString().equals(String.valueOf(Request.STARTGAME))){
 					startGame((StartGame) obj);
-					return;
 				}else if (obj.toString().equals(String.valueOf(Request.MOVETOSTART))){
 					return;
 				}
@@ -202,7 +201,7 @@ public class HandleClient implements Runnable{
 		try {
 			GroupList groupList = (GroupList) objectInputStream.readObject();
 			objectOutputStream.writeObject(new GroupList(GameGlobalVariables.getInstance().getGAMER().getClientList(groupList.getGroupName())));
-			GameGlobalVariables.getInstance().getGAMER().sendState(groupName);
+			GameGlobalVariables.getInstance().getGAMER().sendState(groupName,clientName);
 			while (true){
 				Object obj = objectInputStream.readObject();
 				

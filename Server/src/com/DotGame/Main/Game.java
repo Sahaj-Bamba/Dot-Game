@@ -9,7 +9,7 @@ public class Game {
 	private int size;
 	private GameState gameState;
 	
-	public Game(int Size) {
+	public Game(int size) {
 		this.size = size;
 		gameState = new GameState(size);
 	}

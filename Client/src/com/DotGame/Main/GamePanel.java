@@ -45,15 +45,39 @@ public class GamePanel extends JPanel {
     private Line2D[][] hLines = new Line2D[10][10];
     private Rectangle2D[][] rects = new Rectangle2D[10][10];
     
+    
+    private boolean isOnline;
+    private OfflineGame offlineGame;
     private boolean canMakeMove;
     
     public GamePanel(int size){
+        this.isOnline = true;
         this.size = size;
         setBorder(BorderFactory.createLineBorder(Color.black));
         setBackground(Color.white);
         setSize(WIDTH, HEIGHT);
         canMakeMove = false;
-        gameState = new GameState(size);
+        gameState = new GameState(size,2);
+        init();
+        
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                clicked(e.getX(),e.getY());
+            }
+        });
+   
+    }    
+    
+    public GamePanel(int size,OfflineGame offlineGame){
+        this.isOnline = false;
+        this.offlineGame = offlineGame;
+        this.size = size;
+        setBorder(BorderFactory.createLineBorder(Color.black));
+        setBackground(Color.white);
+        setSize(WIDTH, HEIGHT);
+        canMakeMove = true;
+        gameState = new GameState(size,GameGlobalVariables.getInstance().getNumberOfPlayers());
         init();
         
         addMouseListener(new MouseAdapter() {
@@ -80,7 +104,7 @@ public class GamePanel extends JPanel {
             for(int j=0;j<size;j++)
             {
                 rects[i][j] = new Rectangle2D.Double(offset + j*gridSize , offset + i*gridSize,gridSize,gridSize);
-                dots[i][j] = new Ellipse2D.Double(offset + j*gridSize , offset + i*gridSize,dotSize,dotSize);
+                dots[i][j] = new Ellipse2D.Double(offset + j*gridSize - dotSize/2, offset + i*gridSize - dotSize/2,dotSize,dotSize);
                 vLines[i][j] = new Line2D.Double(offset + j*gridSize , offset + i*gridSize,offset + j*gridSize , offset + (i+1)*gridSize);
                 hLines[i][j] = new Line2D.Double(offset + j*gridSize , offset + i*gridSize,offset + (j+1)*gridSize , offset + (i)*gridSize);
             }
@@ -92,7 +116,7 @@ public class GamePanel extends JPanel {
     
     
     protected void paintComponent(Graphics g) {
-        
+        System.out.println("painting");
         super.paintComponent(g);       
         Graphics2D g2d = (Graphics2D)g;
         
@@ -100,17 +124,17 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 g2d.setColor(Color.blue);
-                if (click1 != null && click1.x == i && click1.x == j){
+                if (click1 != null && click1.x == i && click1.y == j){
                     g2d.setColor(Color.red);
                 }
                 g2d.fill(dots[i][j]);
                 if (gameState.getVColor(i,j) != -1){
                     g2d.setColor(colors[gameState.getVColor(i,j)]);
-                    g2d.fill(vLines[i][j]);
+                    g2d.draw(vLines[i][j]);
                 }
                 if (gameState.getHColor(i,j) != -1){
                     g2d.setColor(colors[gameState.getHColor(i,j)]);
-                    g2d.fill(hLines[i][j]);
+                    g2d.draw(hLines[i][j]);
                 }
                 if (gameState.getRColor(i,j) != -1){
                     g2d.setColor(colors[gameState.getRColor(i,j)]);
@@ -139,6 +163,7 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if(dots[i][j].contains(x, y)){
+                    System.out.println(i + " " + j);
                     if (click1 == null){
                         click1 = new Point(i, j);
                         repaint();
@@ -161,25 +186,41 @@ public class GamePanel extends JPanel {
     
     private void move(){
         int tmp;
-        click1 = null;
-        click2 = null;
         if ( Math.abs(click1.x - click2.x) + Math.abs(click1.y - click2.y) == 1 ) {
                 // line possible
             if (click1.y == click2.y){
                 // vertical line
                 tmp = Math.min(click1.x, click2.x);
                 if (gameState.getVColor(tmp,click1.y) == -1){
-                    GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(tmp,click1.y), LineType.Vertical));
+                    if (isOnline) {
+                        GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(tmp,click1.y), LineType.Vertical));
+                    }else{
+                        gameState.makeMove(new Move(new Point(tmp,click1.y), LineType.Vertical));
+                        offlineGame.updateGame(gameState);
+                    }
                 }
             }
             else{
                 // horizontal line
-                tmp = Math.min(click1.y, click2.y);
-                if (gameState.getVColor(click1.x,tmp) == -1){
-                    GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(click1.x,tmp), LineType.Horizontal));
+                tmp = Math.min(click1.y, click2.y );
+                if (gameState.getHColor(click1.x,tmp) == -1){
+                    if (isOnline) {
+                        GameGlobalVariables.getInstance().getClient().sendMessage(new Move(new Point(click1.x,tmp), LineType.Horizontal));
+                    }else{
+                        gameState.makeMove(new Move(new Point(click1.x,tmp), LineType.Horizontal));
+                        offlineGame.updateGame(gameState);
+                    }
                 }
             }
+            
         }
+        if (!isOnline) {
+            if (gameState.isOver()) {
+                offlineGame.gameOver(gameState.getWinner());
+            }
+        }
+        click1 = null;
+        click2 = null;
         repaint();
     }
     

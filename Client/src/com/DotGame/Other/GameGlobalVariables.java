@@ -45,6 +45,7 @@ public class GameGlobalVariables {
      *
      */
     private int SIZE = 3;
+    private int numberOfPlayers = 2;
     
     /**
      * Private constructor calls init method
@@ -100,6 +101,18 @@ public class GameGlobalVariables {
 
     public double getScreenWidthFraction() {
         return screenWidthFraction;
+    }
+
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public void setSIZE(int SIZE) {
+        this.SIZE = SIZE;
+    }
+
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
     }
     
     /**

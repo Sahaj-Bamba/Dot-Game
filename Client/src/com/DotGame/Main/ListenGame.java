@@ -13,6 +13,7 @@ import com.DotGame.Request.GameState;
 import com.DotGame.Request.Message;
 import com.DotGame.Request.RemoveMember;
 import com.DotGame.Utilities.GroupView;
+import java.awt.Color;
 
 /**
  *
@@ -38,7 +39,7 @@ public class ListenGame implements Runnable{
             }else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
                 removeMember((RemoveMember)obj);    
             }else if (obj.toString().equals(String.valueOf(Request.GAMESTATE))){
-                updateGame((GameState)obj);    
+                updateGame((GameState)obj);
             }else if (obj.toString().equals(String.valueOf(Request.GAMEOVER))){
                 gameOver((GameOver)obj);    
             }
@@ -56,7 +57,12 @@ public class ListenGame implements Runnable{
     }
 
     private void updateGame(GameState gameState) {
-        mainGame.updateGame(gameState);
+        mainGame.updateGame(gameState);    
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.println(gameState.getHColor(i, j));
+            }
+        }
     }
 
     private void gameOver(GameOver gameOver) {

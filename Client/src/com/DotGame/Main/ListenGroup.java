@@ -63,10 +63,8 @@ public class ListenGroup implements Runnable{
     }
 
     private void startGame(StartGame startGame) {
-        if (!GameGlobalVariables.getInstance().getClient().isIsOwner()) {
-            GameGlobalVariables.getInstance().getClient().sendMessage(new MoveToStart());
-        }
-        System.out.println("Started Game in group " + GameGlobalVariables.getInstance().getClient().getGroupName() + " of " + GameGlobalVariables.getInstance().getClient().getName());
+        GameGlobalVariables.getInstance().getClient().sendMessage(new MoveToStart());
+        System.out.println("Started Game in group " + GameGlobalVariables.getInstance().getClient().getGroupName() + " of " + GameGlobalVariables.getInstance().getClient().getName() + " Of size "+ startGame.getSize());
         groupView.startGame(startGame.getSize());
     }
     

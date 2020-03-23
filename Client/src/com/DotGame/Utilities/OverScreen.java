@@ -117,6 +117,7 @@ public class OverScreen extends javax.swing.JFrame {
 
     public void initializer(String name){
         msg.setText("The winner is " + name);
+        this.setVisible(true);
     }
         
 }

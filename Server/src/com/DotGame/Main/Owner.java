@@ -208,8 +208,8 @@ public class Owner {
 	 * may be used for synchronisation purposes
 	 * @param group Name of the group
 	 */
-	public void sendState(String group){
-		groups.get(group).sendState();
+	public void sendState(String group,String client){
+		groups.get(group).sendState(client);
 	}
 	
 	/**

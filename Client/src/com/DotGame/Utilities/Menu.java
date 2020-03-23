@@ -5,6 +5,9 @@
  */
 package com.DotGame.Utilities;
 
+import com.DotGame.Main.OfflineGame;
+import com.DotGame.Other.GameGlobalVariables;
+
 /**
  *
  * @author Sahaj
@@ -34,6 +37,11 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         startGame.setText("Start Game");
+        startGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startGameActionPerformed(evt);
+            }
+        });
 
         connect.setText("Connect");
         connect.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +81,13 @@ public class Menu extends javax.swing.JFrame {
         new GroupSelect().setVisible(true);
         
     }//GEN-LAST:event_connectActionPerformed
+
+    private void startGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameActionPerformed
+
+        this.dispose();
+        new OfflineGame().initializer(GameGlobalVariables.getInstance().getSIZE());
+        
+    }//GEN-LAST:event_startGameActionPerformed
 
     /**
      * @param args the command line arguments

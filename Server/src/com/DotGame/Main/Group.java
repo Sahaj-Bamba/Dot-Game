@@ -154,13 +154,20 @@ public class Group {
 	
 	public void makeMove(Move move){
 		if(game.makeMove(move)){
-			send_message(game.getGameState());
 			send_message(new GameOver(game.getWinner()));
+			return;
 		}
+		send_message(game.getGameState());
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.out.println(game.getGameState().getHColor(i, j));
+			}
+		}
+		
 	}
 	
-	public void sendState(){
-		send_message(game.getGameState());
+	public void sendState(String client){
+		send_message(game.getGameState(),client);
 	}
 	
 }
