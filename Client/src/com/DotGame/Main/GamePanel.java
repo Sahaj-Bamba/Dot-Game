@@ -120,6 +120,15 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);       
         Graphics2D g2d = (Graphics2D)g;
         
+        // rects 
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (gameState.getRColor(i,j) != -1){
+                    g2d.setColor(colors[gameState.getRColor(i,j)]);
+                    g2d.fill(rects[i][j]);
+                }
+            }
+        }
         // Draw Dots
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -128,17 +137,23 @@ public class GamePanel extends JPanel {
                     g2d.setColor(Color.red);
                 }
                 g2d.fill(dots[i][j]);
+            }
+        }
+        // V lines
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 if (gameState.getVColor(i,j) != -1){
                     g2d.setColor(colors[gameState.getVColor(i,j)]);
                     g2d.draw(vLines[i][j]);
                 }
+            }
+        }
+        // H lines
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 if (gameState.getHColor(i,j) != -1){
                     g2d.setColor(colors[gameState.getHColor(i,j)]);
                     g2d.draw(hLines[i][j]);
-                }
-                if (gameState.getRColor(i,j) != -1){
-                    g2d.setColor(colors[gameState.getRColor(i,j)]);
-                    g2d.fill(rects[i][j]);
                 }
             }
         }
