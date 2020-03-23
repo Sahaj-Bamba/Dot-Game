@@ -50,6 +50,11 @@ public class OfflineGame extends javax.swing.JFrame {
         turnOf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         Quit.setText("Quit");
+        Quit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,6 +82,13 @@ public class OfflineGame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void QuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitActionPerformed
+        
+        this.dispose();
+        new Menu().setVisible(true);
+        
+    }//GEN-LAST:event_QuitActionPerformed
 
     /**
      * @param args the command line arguments
