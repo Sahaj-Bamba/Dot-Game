@@ -154,6 +154,7 @@ public class OfflineGame extends javax.swing.JFrame {
     private void starterGame(int size) {
         game = new GamePanel(size,this);
         game.setBounds(50, 110, 440, 440);
+        turnOf.setText("Player " + (1));
         this.add(game);
     }
 
