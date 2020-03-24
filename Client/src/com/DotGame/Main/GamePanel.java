@@ -164,6 +164,12 @@ public class GamePanel extends JPanel {
         this.gameState = gameState;
         this.repaint();
     }
+    
+    public void update(Move move){
+        this.gameState.makeMove(move);
+        this.canMakeMove = false;
+        this.repaint();
+    }
         
     public void makeMove(){
         canMakeMove = true;
@@ -238,5 +244,11 @@ public class GamePanel extends JPanel {
         click2 = null;
         repaint();
     }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+    
+    
     
 }

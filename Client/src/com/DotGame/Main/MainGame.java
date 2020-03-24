@@ -7,9 +7,11 @@ package com.DotGame.Main;
 
 import com.DotGame.Constant.MessageType;
 import com.DotGame.Other.GameGlobalVariables;
+import com.DotGame.Request.GameOver;
 import com.DotGame.Request.GameState;
 import com.DotGame.Request.GroupList;
 import com.DotGame.Request.Message;
+import com.DotGame.Request.Move;
 import com.DotGame.Request.RemoveMember;
 import com.DotGame.Test.CanvasPannel;
 import com.DotGame.Test.MyCanvas;
@@ -214,6 +216,14 @@ public class MainGame extends javax.swing.JFrame {
         game.update(gameState);
         turnOf.setText(players[gameState.getTurn()]);
     }
+    
+    void updateGame(Move move) {
+        game.update(move);
+        turnOf.setText(players[game.getGameState().getTurn()]);
+        if (players[game.getGameState().getTurn()].equals(GameGlobalVariables.getInstance().getClient().getName())) {
+            game.makeMove();
+        }
+    }
 
     private void starterGame(int size) {
         game = new GamePanel(size);
@@ -223,9 +233,10 @@ public class MainGame extends javax.swing.JFrame {
 
     void gameOver(int name) {
         System.out.println(players[name]);
-        GameGlobalVariables.getInstance().getClient().sendMessage(new RemoveMember(GameGlobalVariables.getInstance().getClient().getName()));
+        GameGlobalVariables.getInstance().getClient().sendMessage(new GameOver(0));
         GameGlobalVariables.getInstance().destroy();
-        this.destroy();
+        listen = null;
+        this.dispose();
         new OverScreen().initializer(players[name]);
     }
     

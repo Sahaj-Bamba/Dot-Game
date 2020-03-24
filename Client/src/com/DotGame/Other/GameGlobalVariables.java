@@ -44,7 +44,7 @@ public class GameGlobalVariables {
      * Game Control Variables
      *
      */
-    private int SIZE = 3;
+    private int SIZE = 2;
     private int numberOfPlayers = 2;
     
     /**

@@ -4,7 +4,6 @@ package com.DotGame.Request;
 import com.DotGame.Constant.LineType;
 import com.DotGame.Constant.Request;
 
-import java.awt.*;
 import java.io.Serializable;
 
 /**

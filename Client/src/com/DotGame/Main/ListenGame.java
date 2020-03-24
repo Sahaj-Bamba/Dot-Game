@@ -11,6 +11,7 @@ import com.DotGame.Request.AddMember;
 import com.DotGame.Request.GameOver;
 import com.DotGame.Request.GameState;
 import com.DotGame.Request.Message;
+import com.DotGame.Request.Move;
 import com.DotGame.Request.RemoveMember;
 import com.DotGame.Utilities.GroupView;
 import java.awt.Color;
@@ -39,11 +40,14 @@ public class ListenGame implements Runnable{
             }else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
                 removeMember((RemoveMember)obj);    
             }else if (obj.toString().equals(String.valueOf(Request.GAMESTATE))){
-//                System.out.println("turn is of " + ((GameState) obj).getTurn());
-//                System.out.println(((GameState) obj).num);
+                System.out.println("turn is of " + ((GameState) obj).getTurn());
+                System.out.println(((GameState) obj).num);
 	        updateGame((GameState)obj);
             }else if (obj.toString().equals(String.valueOf(Request.GAMEOVER))){
-                gameOver((GameOver)obj);    
+                gameOver((GameOver)obj);
+                break;
+            }if (obj.toString().equals(String.valueOf(Request.MOVE))){
+                updateGame((Move)obj);    
             }
             
         }
@@ -65,6 +69,10 @@ public class ListenGame implements Runnable{
                 System.out.println(gameState.getHColor(i, j));
             }
         }
+    }
+    
+    private void updateGame(Move move) {
+        mainGame.updateGame(move);    
     }
 
     private void gameOver(GameOver gameOver) {

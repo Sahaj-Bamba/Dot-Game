@@ -4,7 +4,6 @@ package com.DotGame.Main;
  * @author Sahaj
  */
 
-import com.DotGame.Constant.LineType;
 import com.DotGame.Request.GameOver;
 import com.DotGame.Request.Move;
 
@@ -75,17 +74,17 @@ public class Group {
 	 * @return true if the client has been successfully removed
 	 */
 	public boolean remove_client(String name){
-		if (game != null){
-			String[] st = getClientList();
-			int i=0;
-			for (String s: st) {
-				if (s.equals(name)) {
-					break;
-				}
-				i++;
-			}
-			game.remove(i);
-		}
+//		if (game != null){
+//			String[] st = getClientList();
+//			int i=0;
+//			for (String s: st) {
+//				if (s.equals(name)) {
+//					break;
+//				}
+//				i++;
+//			}
+//			game.remove(i);
+//		}
 		if (client_exist(name)) {
 			clients.remove(name);
 			return true;
@@ -167,13 +166,13 @@ public class Group {
 			send_message(new GameOver(game.getWinner()));
 			return;
 		}
-		send_message(game.getGameState());
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				System.out.println(game.getGameState().getHColor(i, j));
-			}
-		}
-		
+//		send_message(game.getGameState());
+//		for (int i = 0; i < 3; i++) {
+//			for (int j = 0; j < 3; j++) {
+//				System.out.println(game.getGameState().getHColor(i, j));
+//			}
+//		}
+		send_message(move);
 	}
 	
 	public void sendState(String client){
