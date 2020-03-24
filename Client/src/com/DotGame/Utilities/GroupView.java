@@ -202,7 +202,7 @@ public class GroupView extends javax.swing.JFrame {
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
 
         GameGlobalVariables.getInstance().getClient().sendMessage(new Message(GameGlobalVariables.getInstance().getClient().getName(),GameGlobalVariables.getInstance().getClient().getGroupName(),msgContent.getText(),MessageType.UserToGroup));
-        
+        msgContent.setText("");
     }//GEN-LAST:event_sendActionPerformed
 
     /**
@@ -269,7 +269,7 @@ public class GroupView extends javax.swing.JFrame {
         GroupList groupList = (GroupList) GameGlobalVariables.getInstance().getClient().receiveMessage();
         
         String[] x = groupList.getClients();
-        
+        chatArea.setEditable(false);
         player1.setText(x[0]);
         player2.setText(x[1]);
         player3.setText(x[2]);

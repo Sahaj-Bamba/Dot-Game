@@ -120,7 +120,7 @@ public class MainGame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         GameGlobalVariables.getInstance().getClient().sendMessage(new Message(GameGlobalVariables.getInstance().getClient().getName(),GameGlobalVariables.getInstance().getClient().getGroupName(),msgContent.getText(),MessageType.UserToGroup));
-        
+        msgContent.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void leaveGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveGameActionPerformed
@@ -183,7 +183,7 @@ public class MainGame extends javax.swing.JFrame {
     
     public void initializer(int size) {
         playerName.setText(GameGlobalVariables.getInstance().getClient().getName());
-        
+        chatArea.setEditable(false);
         GameGlobalVariables.getInstance().getClient().sendMessage(new GroupList(GameGlobalVariables.getInstance().getClient().getGroupName()));
         GroupList groupList = (GroupList) GameGlobalVariables.getInstance().getClient().receiveMessage();
         

@@ -63,6 +63,7 @@ public class Settings extends javax.swing.JFrame {
         });
 
         numPlayerValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numPlayerValue.setText("3");
 
         gridSize.setMajorTickSpacing(1);
         gridSize.setMaximum(9);
@@ -75,6 +76,7 @@ public class Settings extends javax.swing.JFrame {
         });
 
         gridSizeValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gridSizeValue.setText("5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,8 +95,8 @@ public class Settings extends javax.swing.JFrame {
                             .addComponent(playersNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(numPlayerValue, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                            .addComponent(gridSizeValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(numPlayerValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gridSizeValue, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))

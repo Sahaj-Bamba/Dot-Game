@@ -72,7 +72,7 @@ public class GameGlobalVariables {
      */
     private void init(){
         calculateFraction(1080,1920);
-        port = 5555;
+        port = 5556;
         ip = "localhost";
     }
     

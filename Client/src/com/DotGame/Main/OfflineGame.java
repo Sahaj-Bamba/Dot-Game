@@ -137,6 +137,7 @@ public class OfflineGame extends javax.swing.JFrame {
     
     public void initializer(int size) {
         starterGame(size);
+       
         this.setVisible(true);
     }
     

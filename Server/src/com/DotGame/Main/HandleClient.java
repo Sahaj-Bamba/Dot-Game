@@ -21,7 +21,7 @@ public class HandleClient implements Runnable{
 	private Socket socket;
 	private ObjectInputStream objectInputStream;
 	private ObjectOutputStream objectOutputStream;
-	
+	private boolean left;
 	private boolean goBack;
 	
 	/**
@@ -35,6 +35,7 @@ public class HandleClient implements Runnable{
 			objectInputStream = new ObjectInputStream(socket.getInputStream());
 			objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			System.out.println("Streams created");
+			left = false;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +53,9 @@ public class HandleClient implements Runnable{
 		}while(goBack);
 		
 		startWait();
-
+		if (left){
+			return;
+		}
 		gamePlay();
 		
 	}
@@ -147,6 +150,8 @@ public class HandleClient implements Runnable{
 					addMember((AddMember)obj);
 				}else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
 					removeMember((RemoveMember)obj);
+					left = true;
+					return;
 				}else if (obj.toString().equals(String.valueOf(Request.STARTGAME))){
 					startGame((StartGame) obj);
 				}else if (obj.toString().equals(String.valueOf(Request.MOVETOSTART))){
@@ -214,6 +219,7 @@ public class HandleClient implements Runnable{
 				}else if (obj.toString().equals(String.valueOf(Request.MEMBERREMOVE))){
 					removeMember((RemoveMember)obj);
 					return;
+					
 				}else if (obj.toString().equals(String.valueOf(Request.MOVE))){
 					GameGlobalVariables.getInstance().getGAMER().makeMove(groupName,(Move) obj);
 				}else if (obj.toString().equals(String.valueOf(Request.GAMEOVER))){

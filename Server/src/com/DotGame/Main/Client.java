@@ -7,6 +7,7 @@ package com.DotGame.Main;
 import com.DotGame.Constant.Request;
 import com.DotGame.Request.GameState;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -29,6 +30,13 @@ public class Client {
 	public Client(String name, ObjectOutputStream objectOutputStream){
 		this.name = name;
 		this.objectOutputStream = objectOutputStream;
+		try {
+			FileWriter myWriter = new FileWriter("Gamers.txt",true);
+			myWriter.write(name + "\n");
+			myWriter.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
