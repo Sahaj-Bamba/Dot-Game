@@ -6,6 +6,7 @@ package com.DotGame.Main;
  */
 
 
+import com.DotGame.Other.GameGlobalVariables;
 import com.DotGame.Request.Move;
 
 import java.io.ObjectOutputStream;
@@ -233,6 +234,25 @@ public class Owner {
 				remove_group((String)g.getKey());
 			}
 		}
+	}
+	
+	/**
+	 * Get a group for match making
+	 * @param client the name of client
+	 * @return the name of geoup
+	 */
+	public String getGroup(String client){
+		String ans = "";
+		Iterator group = groups.entrySet().iterator();
+		while (group.hasNext()){
+			Map.Entry g = (Map.Entry)group.next();
+			if( ((Group)g.getValue()).numOfClients() < GameGlobalVariables.getInstance().getSIZE()) {
+				if (!(((Group)g.getValue()).client_exist(client))){
+					ans = ((String) g.getKey());
+				}
+			}
+		}
+		return ans;
 	}
 	
 }

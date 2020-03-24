@@ -54,6 +54,11 @@ public class GroupSelect extends javax.swing.JFrame {
         });
 
         join.setText("Random");
+        join.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Group Name");
@@ -189,6 +194,32 @@ public class GroupSelect extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_join1ActionPerformed
+
+    private void joinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinActionPerformed
+
+        if (clientName.getText().equals("" )) {
+            error.setText("Please enter name.");
+            return;
+        }
+        
+        GameGlobalVariables.getInstance().getClient().sendMessage(new GroupDetails("", "", clientName.getText(), String.valueOf(Request.RANDOM)));
+        
+        Response response = (Response) GameGlobalVariables.getInstance().getClient().receiveMessage();
+        error.setText(response.getErrorMessage());
+
+        if(response.getStatus().equals(Responses.OK))
+        {
+            GameGlobalVariables.getInstance().getClient().setName(clientName.getText(),response.getErrorMessage());
+            GroupView groupView = new GroupView();
+            groupView.initialiser();
+            this.dispose();
+        }else{
+            
+        }
+        
+
+        
+    }//GEN-LAST:event_joinActionPerformed
 
     /**
      * @param args the command line arguments

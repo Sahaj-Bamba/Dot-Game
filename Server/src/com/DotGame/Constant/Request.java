@@ -20,7 +20,10 @@ public enum Request {
 	GAMEOVER("13"),
 	MOVETOSTART("14"),
 	
+	RANDOM("15"),
+	
 	;
+	
 	
 	Request(String s){
 		s.toString();

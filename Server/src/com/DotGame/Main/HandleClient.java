@@ -50,12 +50,18 @@ public class HandleClient implements Runnable{
 		do {
 			goBack=true;
 			groupInit();
-		}while(goBack);
+		}while(goBack && !left);
 		
-		startWait();
 		if (left){
 			return;
 		}
+		
+		startWait();
+		
+		if (left){
+			return;
+		}
+		
 		gamePlay();
 		
 	}
@@ -75,10 +81,13 @@ public class HandleClient implements Runnable{
 				objectOutputStream.writeObject(createGroup(groupDetails));
 			}else if (groupDetails.toString().equals(String.valueOf(Request.JOINGROUP))) {
 				objectOutputStream.writeObject(joinGroup(groupDetails));
+			}else if (groupDetails.toString().equals(String.valueOf(Request.RANDOM))) {
+				objectOutputStream.writeObject(randomGroup(groupDetails));
 			}
 			
 		} catch (Exception e) {
 			System.out.println("Client Disconnected");
+			leftMember();
 			e.printStackTrace();
 		}
 		
@@ -116,7 +125,7 @@ public class HandleClient implements Runnable{
 		}
 		
 		if (GameGlobalVariables.getInstance().getGAMER().numOfClients(groupDetails.get_group_name()) > GameGlobalVariables.getInstance().getSIZE()){
-			return new Response(Responses.ERROR,"Password doesnot match.");
+			return new Response(Responses.ERROR,"Client Limit Reached.");
 		}
 		
 		if (GameGlobalVariables.getInstance().getGAMER().client_exist(groupName,clientName)){
@@ -126,6 +135,23 @@ public class HandleClient implements Runnable{
 		GameGlobalVariables.getInstance().getGAMER().add_client(groupDetails.get_group_name(),groupDetails.get_client_name(),this.objectOutputStream);
 		goBack = false;
 		return new Response(Responses.OK,"Group Joined");
+	}
+	
+	
+	/**
+	 * Adds the client to a random group.
+	 * @param groupDetails The details of client
+	 * @return The response to send back to client
+	 */
+	private Object randomGroup(GroupDetails groupDetails){
+		String grp = GameGlobalVariables.getInstance().getGAMER().getGroup(groupDetails.get_client_name());
+		if (grp.equals("")){
+			return new Response(Responses.ERROR,"There are currently no free groups available. You can create your own though.");
+		}
+		
+		GameGlobalVariables.getInstance().getGAMER().add_client(grp,groupDetails.get_client_name(),this.objectOutputStream);
+		goBack = false;
+		return new Response(Responses.OK,grp);
 	}
 	
 	/**
@@ -160,8 +186,10 @@ public class HandleClient implements Runnable{
 			}
 			
 		} catch (IOException e) {
+			leftMember();
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			leftMember();
 			e.printStackTrace();
 		}
 		
@@ -202,6 +230,11 @@ public class HandleClient implements Runnable{
 		GameGlobalVariables.getInstance().getGAMER().send_message(removeMember,groupName);
 	}
 	
+	private void leftMember(){
+		left = true;
+		GameGlobalVariables.getInstance().getGAMER().remove_client(groupName,clientName);
+	}
+	
 	/**
 	 * Controls all that happens during actual gameplay takes place
 	 */
@@ -229,8 +262,10 @@ public class HandleClient implements Runnable{
 			}
 			
 		} catch (IOException e) {
+			leftMember();
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			leftMember();
 			e.printStackTrace();
 		}
 		
