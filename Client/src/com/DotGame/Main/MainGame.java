@@ -201,6 +201,13 @@ public class MainGame extends javax.swing.JFrame {
     }
      
     public void lostPlayer(String name){
+        int i;
+        for (i = 0; i < 8; i++) {
+            if (players[i].equals(name)) {
+                break;
+            }
+        }
+        game.lostPlayer(i);
         chatArea.setText(chatArea.getText() + "\n\t\t" + name + " left the room. ");
     }
 

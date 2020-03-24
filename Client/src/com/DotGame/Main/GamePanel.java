@@ -249,6 +249,8 @@ public class GamePanel extends JPanel {
         return gameState;
     }
     
-    
+    public void lostPlayer(int i){
+        gameState.remove(i);
+    }
     
 }
