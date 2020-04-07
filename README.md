@@ -2,11 +2,18 @@
 A global online multiplayer turn-based dot-game game. 
 
 
-#Game Play
+# Game Play
 * Join dots to form lines.
 * Lines form squares and you get points.
 * Most points winner.
 
+# Techstack 
+ * Java 8
+ * Intellij 
+ * Sockets
+ * Native java drawing
+ * Java swing
+ 
 # Features
 * Online Global multiplayer with private game rooms. 
 * 2 - 8 players game.
@@ -23,10 +30,11 @@ A global online multiplayer turn-based dot-game game.
 * [Native jar for linuix](https://sahajbamba.me/Files/Dot-Game.jar)
 
 
-# Support me at 
-* https://www.buymeacoffee.com/7OnBUe
-* https://sahaj.itch.io/dot-game
-
 ### My profile
 * https://sahaj.itch.io
 * https://www.sahajbamba.me
+
+### Support me at 
+* https://sahaj.itch.io/dot-game
+* https://www.buymeacoffee.com/7OnBUe
+
