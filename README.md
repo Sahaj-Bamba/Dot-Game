@@ -41,4 +41,7 @@ A global online multiplayer turn-based dot-game game.
 
 # Screen Shots
 ![1](/Pics/1.PNG)
-Format: ![1](url)
+![1](/Pics/2.PNG)
+![1](/Pics/3.PNG)
+![1](/Pics/4.PNG)
+![1](/Pics/5.PNG)
