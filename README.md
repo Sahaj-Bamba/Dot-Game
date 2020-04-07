@@ -1,4 +1,4 @@
-#Dot Game
+# Dot Game
 A global online multiplayer turn-based dot-game game. 
 
 
@@ -9,9 +9,14 @@ A global online multiplayer turn-based dot-game game.
 
 # Features
 * Online Global multiplayer with private game rooms. 
+* 2 - 8 players game.
 * Interactive Chat pannel, Talk in the room while waiting for someone. Provoke your opponents.
 * Show the world who is the best.
 
+# Features in next release
+* Team based battles
+* Audio communication feature
+* Ranking System and Global Leaderboard
 
 # Download links
 * [Windows](https://sahajbamba.me/Files/Dot-Game.exe)
