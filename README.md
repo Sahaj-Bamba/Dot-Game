@@ -38,3 +38,7 @@ A global online multiplayer turn-based dot-game game.
 * https://sahaj.itch.io/dot-game
 * https://www.buymeacoffee.com/7OnBUe
 
+
+# Screen Shots
+![1](/Pics/1.PNG)
+Format: ![1](url)
