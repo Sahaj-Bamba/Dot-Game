@@ -30,11 +30,11 @@ A global online multiplayer turn-based dot-game game.
 * [Native jar for linuix](https://sahajbamba.me/Files/Dot-Game.jar)
 
 
-### My profile
+# My profile
 * https://sahaj.itch.io
 * https://www.sahajbamba.me
 
-### Support me at 
+# Support me at 
 * https://sahaj.itch.io/dot-game
 * https://www.buymeacoffee.com/7OnBUe
 
