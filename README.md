@@ -1,5 +1,5 @@
 # Dot Game
-A global online multiplayer turn-based dot-game game. 
+A global online multiplayer turn-based dot connecting strategy game.
 
 
 # Game Play
